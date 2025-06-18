@@ -10,12 +10,11 @@ copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software. Additionally, any publications or studies
-that leverage the software need to cite the initial publication for this 
-(https://doi.org/10.1145/3706370.3732894) or include the original developer, 
-Justin Berry, as a contributor.
+copies or substantial portions of the Software. 
 
-
+Additionally, any publications or studies that leverage the software need to 
+cite the initial publication for this (https://doi.org/10.1145/3706370.3732894) 
+or include the original developer, Justin Berry, as a contributor.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
