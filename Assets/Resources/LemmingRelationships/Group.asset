@@ -1,0 +1,121 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d27428365df05fa4d942320c966a0295, type: 3}
+  m_Name: Group
+  m_EditorClassIdentifier: 
+  ID: Group
+  description: New relationship created via menu
+  useInputSystem: 1
+  Herd: {fileID: 11400000, guid: cced04b9c86ab03488f90713a02927f5, type: 2}
+  familyType: 3
+  singleMetric: 0
+  coupleMetric: 0
+  throupleMetric: 0
+  groupMetric: 2
+  min: 0
+  max: 1
+  curveType: 0
+  customCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  proxy: {fileID: 0}
+  _settings:
+    proxy: {fileID: 0}
+    distanceOptions: 0
+    distanceUnit: 1
+    relativeToObject: 0
+    objectToReference: {fileID: 0}
+    useGazeFromProxy: 0
+    magnitudeOnly: 0
+    directionOnly: 0
+    relativeToMembers: 0
+    axisSelection: 0
+    invert: 0
+    axisSelectionThrouple: 0
+    densityMethod: 0
+    sizeMethod: 0
+    useSingleAxis: 0
+    singleAxis: 1
+    referenceVector: {x: 0, y: 0, z: 0}
+    rotationAxis: {x: 0, y: 0, z: 0}
+    threshold: 0
+  selectedReferences:
+  - source: {fileID: 0}
+    scenePath: LemmingDefaultSetup/Lemmings_Go_Here/ExampleLemming (2)
+    objectName: ExampleLemming (2)
+    name: ExampleLemming (2)
+    confidence: 1
+  - source: {fileID: 0}
+    scenePath: LemmingDefaultSetup/Lemmings_Go_Here/ExampleLemming (8)
+    objectName: ExampleLemming (8)
+    name: ExampleLemming (8)
+    confidence: 1
+  - source: {fileID: 0}
+    scenePath: LemmingDefaultSetup/Lemmings_Go_Here/ExampleLemming (4)
+    objectName: ExampleLemming (4)
+    name: ExampleLemming (4)
+    confidence: 1
+  - source: {fileID: 0}
+    scenePath: LemmingDefaultSetup/Lemmings_Go_Here/ExampleLemming (7)
+    objectName: ExampleLemming (7)
+    name: ExampleLemming (7)
+    confidence: 1
+  - source: {fileID: 0}
+    scenePath: LemmingDefaultSetup/Lemmings_Go_Here/ExampleLemming (6)
+    objectName: ExampleLemming (6)
+    name: ExampleLemming (6)
+    confidence: 1
+  - source: {fileID: 0}
+    scenePath: LemmingDefaultSetup/Lemmings_Go_Here/ExampleLemming (3)
+    objectName: ExampleLemming (3)
+    name: ExampleLemming (3)
+    confidence: 1
+  - source: {fileID: 0}
+    scenePath: LemmingDefaultSetup/Lemmings_Go_Here/ExampleLemming (5)
+    objectName: ExampleLemming (5)
+    name: ExampleLemming (5)
+    confidence: 1
+  - source: {fileID: 0}
+    scenePath: LemmingDefaultSetup/Lemmings_Go_Here/ExampleLemming (1)
+    objectName: ExampleLemming (1)
+    name: ExampleLemming (1)
+    confidence: 1
+  selectedNames:
+  - ExampleLemming (2)
+  - ExampleLemming (8)
+  - ExampleLemming (4)
+  - ExampleLemming (7)
+  - ExampleLemming (6)
+  - ExampleLemming (3)
+  - ExampleLemming (5)
+  - ExampleLemming (1)

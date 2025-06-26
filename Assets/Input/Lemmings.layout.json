@@ -1,0 +1,145 @@
+{
+    "name": "Lemmings",
+    "controls": [
+        {
+            "name": "Grab.RawValue",
+            "layout": "Vector3",
+            "format": ""
+        },
+        {
+            "name": "Grab.Normalized",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "Grab.Curved",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "Grab.Over",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "Grab.Under",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "Grab.InRange",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "Grab.AsAxis",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "Group.RawValue",
+            "layout": "Quaternion",
+            "format": ""
+        },
+        {
+            "name": "Group.Normalized",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "Group.Curved",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "Group.Over",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "Group.Under",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "Group.InRange",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "Group.AsAxis",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "PlaySound.RawValue",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "PlaySound.Normalized",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "PlaySound.Curved",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "PlaySound.Over",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "PlaySound.Under",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "PlaySound.InRange",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "PlaySound.AsAxis",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "Select.RawValue",
+            "layout": "Vector3",
+            "format": ""
+        },
+        {
+            "name": "Select.Normalized",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "Select.Curved",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "Select.Over",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "Select.Under",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "Select.InRange",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "Select.AsAxis",
+            "layout": "Axis",
+            "format": ""
+        }
+    ]
+}
