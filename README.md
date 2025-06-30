@@ -4,4 +4,4 @@ Thanks for checking out Lemmings! As of right now it is in beta and mostly worki
 
 The best email to reach me at is Justin.Berry@yale.edu and until I get all of the tutorials recorded please feel free to reach out directly for guidance on getting started if you want to explore its possibilities.
 
-This was produced through my work at the Yale Center for Immersive Technology in Pediatrics and the lab within it, XRPediatrics (XRpeds.org). Support for this work also came from Reality Labs Research.
+This was produced through my work at the Yale Center for Immersive Technology in Pediatrics and the lab within it, XRPediatrics (XRpeds.org). 
