@@ -51,7 +51,7 @@ namespace Lemmings.Input
             Debug.Log($"[LemmingDeviceManager] Loaded {loadedRelationships.Length} input-enabled relationships.");
 
             // Optional: enumerate controls on the device to validate layout and binding names.
-            foreach (var control in InputSystem.GetDevice("Lemmings.layout").allControls)
+            foreach (var control in InputSystem.GetDevice("Lemmings").allControls)
             {
                 Debug.Log($"[{control.name}] => {control.layout}, actual type: {control.GetType().Name}");
             }
