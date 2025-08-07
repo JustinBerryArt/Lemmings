@@ -12,5 +12,9 @@ EditorBuildSettings:
     path: Assets/Lemmings/Scenes/chrisDemo.unity
     guid: e75e957acda21455fbcf1a63533e69e0
   m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: f9470f89ec50eaa4a8345166b0a198cc, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: dce1f73e385c0824cb188e4e43f6ca41, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: cd39da8a68d2dd342a2865157e938e41, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: af8bf403f553b414bbb9153c4ac48940, type: 2}
   m_UseUCBPForAssetBundles: 0
