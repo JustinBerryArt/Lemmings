@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ffefa86ab3ddbd488643c36ade972e7, type: 3}
+  m_Name: XRGenericHerd
+  m_EditorClassIdentifier: 
+  generatedEnumPath: Lemmings.LemmingName
+  members:
+  - source: {fileID: 0}
+    scenePath: LemmingXRSetup/Lemmings_Go_Here/RightPinky
+    objectName: RightPinky
+    name: RightPinky
+    confidence: 1
+  - source: {fileID: 0}
+    scenePath: LemmingXRSetup/Lemmings_Go_Here/LeftMiddle
+    objectName: LeftMiddle
+    name: LeftMiddle
+    confidence: 1
+  - source: {fileID: 0}
+    scenePath: LemmingXRSetup/Lemmings_Go_Here/Chest
+    objectName: Chest
+    name: Chest
+    confidence: 1
+  - source: {fileID: 0}
+    scenePath: LemmingXRSetup/Lemmings_Go_Here/LeftRing
+    objectName: LeftRing
+    name: LeftRing
+    confidence: 1
+  - source: {fileID: 0}
+    scenePath: LemmingXRSetup/Lemmings_Go_Here/RightIndex
+    objectName: RightIndex
+    name: RightIndex
+    confidence: 1
+  - source: {fileID: 0}
+    scenePath: LemmingXRSetup/Lemmings_Go_Here/LeftWrist
+    objectName: LeftWrist
+    name: LeftWrist
+    confidence: 1
+  - source: {fileID: 0}
+    scenePath: LemmingXRSetup/Lemmings_Go_Here/RightWrist
+    objectName: RightWrist
+    name: RightWrist
+    confidence: 1
+  - source: {fileID: 0}
+    scenePath: LemmingXRSetup/Lemmings_Go_Here/Head
+    objectName: Head
+    name: Head
+    confidence: 1
+  - source: {fileID: 0}
+    scenePath: LemmingXRSetup/Lemmings_Go_Here/RightThumb
+    objectName: RightThumb
+    name: RightThumb
+    confidence: 1
+  - source: {fileID: 0}
+    scenePath: LemmingXRSetup/Lemmings_Go_Here/LeftIndex
+    objectName: LeftIndex
+    name: LeftIndex
+    confidence: 1
+  - source: {fileID: 0}
+    scenePath: LemmingXRSetup/Lemmings_Go_Here/RightRing
+    objectName: RightRing
+    name: RightRing
+    confidence: 1
+  - source: {fileID: 0}
+    scenePath: LemmingXRSetup/Lemmings_Go_Here/RightMiddle
+    objectName: RightMiddle
+    name: RightMiddle
+    confidence: 1
+  - source: {fileID: 0}
+    scenePath: LemmingXRSetup/Lemmings_Go_Here/LeftPinky
+    objectName: LeftPinky
+    name: LeftPinky
+    confidence: 1
+  - source: {fileID: 0}
+    scenePath: LemmingXRSetup/Lemmings_Go_Here/LeftThumb
+    objectName: LeftThumb
+    name: LeftThumb
+    confidence: 1

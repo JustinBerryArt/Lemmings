@@ -96,6 +96,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useVisuals: 1
+  useRuntimeVisuals: 1
+  runtimeDebugMaterial: {fileID: 2100000, guid: 1874f57caa0a0524fa5d04e8262f6738, type: 2}
+  showLabel: 1
   drawSphere: 1
   radiusScale: 1
   inRangeColor: {r: 0, g: 1, b: 0, a: 1}

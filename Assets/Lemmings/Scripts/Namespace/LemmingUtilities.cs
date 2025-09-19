@@ -4,6 +4,8 @@ using System.Text;
 using Lemmings.UI;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
 
@@ -1390,4 +1392,105 @@ namespace Lemmings
         }
     } 
     #endregion
+    
+    //------------------------------------------------------
+    // XXXXXXXXXXXXXXX    REGION BREAK        XXXXXXXXXXXXXX
+    //------------------------------------------------------
+
+    #region Lemmings Rendering Support for URP
+ /// <summary>
+    /// A custom render pass that draws debug visuals for all active <see cref="LemmingProxyVisualizer"/> instances in URP.
+    /// Uses GL drawing and must be executed after normal scene rendering.
+    /// </summary>
+    public class LemmingDebugRenderPass : ScriptableRenderPass
+    {
+        /// <summary>
+        /// Label for Unity's internal frame profiler.
+        /// </summary>
+        private readonly string profilerTag = "Lemming Debug Visuals";
+
+        /// <summary>
+        /// Cached list of all active visualizers in the scene.
+        /// </summary>
+        private LemmingProxyVisualizer[] visualizers;
+
+        /// <summary>
+        /// Initializes the render pass and sets it to execute after all opaque and transparent objects are rendered.
+        /// </summary>
+        public LemmingDebugRenderPass()
+        {
+            // This ensures debug visuals are drawn on top of everything else.
+            renderPassEvent = RenderPassEvent.AfterRendering;
+        }
+
+        /// <summary>
+        /// Searches the scene for all <see cref="LemmingProxyVisualizer"/> instances and caches them.
+        /// Call this before each frame if visuals may be added or removed dynamically.
+        /// </summary>
+        public void SetTargets()
+        {
+            visualizers = Object.FindObjectsOfType<LemmingProxyVisualizer>();
+        }
+
+        /// <summary>
+        /// Called by the URP renderer each frame to execute this pass.
+        /// Iterates over each visualizer and invokes its GL-based draw method.
+        /// </summary>
+        /// <param name="context">The current ScriptableRenderContext.</param>
+        /// <param name="renderingData">The current frame's rendering data.</param>
+        public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
+        {
+            if (visualizers == null) return;
+
+            foreach (var viz in visualizers)
+            {
+                if (viz != null &&
+                    viz.useEditorVisuals &&  // NOTE: You may have meant `useVisuals`
+                    viz.useRuntimeVisuals &&
+                    viz.runtimeDebugMaterial != null)
+                {
+                    viz.runtimeDebugMaterial.SetPass(0);
+                    viz.RenderRuntimeVisualsGL();
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// IMPORTANT: You need to add this feature to your URP renderer Asset
+    /// 
+    /// A URP ScriptableRendererFeature that injects <see cref="LemmingDebugRenderPass"/> into the render pipeline.
+    /// This enables in-game debug visuals for Lemming relationships in projects using Universal Render Pipeline.
+    /// </summary>
+    public class LemmingDebugRenderFeature : ScriptableRendererFeature
+    {
+        /// <summary>
+        /// Instance of the custom debug render pass.
+        /// </summary>
+        private LemmingDebugRenderPass debugPass;
+
+        /// <summary>
+        /// Called once when the feature is added to the URP asset.
+        /// Initializes the debug render pass.
+        /// </summary>
+        public override void Create()
+        {
+            debugPass = new LemmingDebugRenderPass();
+        }
+
+        /// <summary>
+        /// Called each frame to enqueue the debug render pass.
+        /// Ensures <see cref="LemmingProxyVisualizer"/> instances are tracked and executed.
+        /// </summary>
+        /// <param name="renderer">The active URP renderer.</param>
+        /// <param name="renderingData">Frame-level rendering information.</param>
+        public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
+        {
+            debugPass.SetTargets();
+            renderer.EnqueuePass(debugPass);
+        }
+    }
+
+    #endregion
+    
 }
