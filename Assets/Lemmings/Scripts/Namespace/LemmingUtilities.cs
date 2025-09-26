@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using Lemmings.UI;
 using UnityEngine;
@@ -959,13 +960,182 @@ namespace Lemmings
     //------------------------------------------------------
 
     #region Lemming Reference Struct
+    
+    /// <summary>
+    /// Lightweight, serializable reference to a "lemming" source object plus metadata.
+    /// Stores a scene-resolvable pointer (path + name) for stability across reloads,
+    /// and exposes fast, cached accessors for Transform and <see cref="Lemming"/>.
+    ///
+    /// Implements <see cref="ILemming"/> so it can be treated uniformly anywhere
+    /// a lemming-like entity (with Name and Confidence) is expected.
+    /// </summary>
+    [Serializable]
+    public struct LemmingReference : ILemming
+    {
+        // ------------------------------- Serialized (stable) -------------------------------
+
+        [SerializeField] private GameObject source;
+
+        /// <summary>
+        /// Slash-separated transform path used to re-resolve <see cref="Source"/> when the
+        /// GameObject reference is missing (e.g., after scene reload).
+        /// </summary>
+        [Tooltip("Slash-separated transform path used for fallback resolution.")]
+        public string scenePath;
+
+        /// <summary>
+        /// Fallback object name used if path resolution fails.
+        /// </summary>
+        [Tooltip("Fallback name used when path resolution fails.")]
+        public string objectName;
+
+        /// <summary>
+        /// Developer-friendly display name for this reference.
+        /// Not automatically synced to the GameObject name to avoid churn.
+        /// </summary>
+        [Tooltip("Display name for UI / logs; does not auto-sync to GameObject.name.")]
+        public string name;
+
+        /// <summary>
+        /// Confidence [0..1] describing tracking quality or reliability for this reference.
+        /// Up to you to drive this at runtime (e.g., via XR tracking status).
+        /// </summary>
+        [Range(0f, 1f)]
+        [Tooltip("Confidence [0..1] describing tracking quality for this reference.")]
+        public float confidence;
+
+        // ------------------------------- Runtime caches (non-serialized) -------------------
+
+        [NonSerialized] private Transform _cachedTransform;
+        [NonSerialized] private Lemming  _cachedLemming;
+        [NonSerialized] private int      _lastResolveFrame; // guards against repeated resolves in same frame
+
+        // ----------------------------------- Properties -----------------------------------
+
+        /// <summary>
+        /// The backing <see cref="GameObject"/> for this reference.
+        /// If not already assigned, attempts a one-time resolution via <see cref="LemmingUtils.GetOrResolve"/>.
+        /// Caches <see cref="Transform"/> and <see cref="Lemming"/> when found.
+        /// </summary>
+        public GameObject Source
+        {
+            get
+            {
+                // Fast path: already have a live reference.
+                if (source) return source;
+
+                // Avoid multiple attempts in the same frame if hot-called.
+                if (_lastResolveFrame == Time.frameCount) return source;
+                _lastResolveFrame = Time.frameCount;
+
+                // Resolve once via your existing utility (updates path on success).
+                source = LemmingUtils.GetOrResolve(ref source, ref scenePath, objectName); // :contentReference[oaicite:0]{index=0} :contentReference[oaicite:1]{index=1}
+
+                // Keep caches consistent.
+                if (source)
+                {
+                    _cachedTransform = source.transform;
+                    source.TryGetComponent(out _cachedLemming);
+                }
+                else
+                {
+                    _cachedTransform = null;
+                    _cachedLemming   = null;
+                }
+                return source;
+            }
+            set
+            {
+                if (ReferenceEquals(source, value)) return;
+
+                source = value;
+                scenePath  = value ? LemmingUtils.GetTransformPath(value.transform) : null; // :contentReference[oaicite:2]{index=2}
+                objectName = value ? value.name : null;
+
+                // Refresh caches immediately so callers can use them this frame.
+                _cachedTransform = value ? value.transform : null;
+                _cachedLemming   = null;
+                if (value) value.TryGetComponent(out _cachedLemming);
+            }
+        }
+
+        /// <summary>
+        /// Fast access to the <see cref="Transform"/>; never allocates or calls <c>GetComponent</c> in the hot path.
+        /// Will trigger a single lazy resolve of <see cref="Source"/> if needed.
+        /// </summary>
+        public Transform SourceTransform
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get
+            {
+                if (_cachedTransform) return _cachedTransform;
+                var go = Source; // may resolve once
+                _cachedTransform = go ? go.transform : null;
+                return _cachedTransform;
+            }
+        }
+
+        /// <summary>
+        /// Fast access to the <see cref="Lemming"/> component attached to <see cref="Source"/>.
+        /// Resolved once (via <c>TryGetComponent</c>) and cached; no per-frame <c>GetComponent</c>.
+        /// </summary>
+        public Lemming Lemming
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get
+            {
+                if (_cachedLemming) return _cachedLemming;
+                var go = Source; // may resolve once
+                if (go) go.TryGetComponent(out _cachedLemming);
+                return _cachedLemming;
+            }
+        }
+
+        // ------------------------------- ILemming implementation ---------------------------
+
+        /// <summary>Display name used wherever an <see cref="ILemming"/> name is required.</summary>
+        public string Name => name; // existing public field exposed as read-only property  :contentReference[oaicite:3]{index=3}
+
+        /// <summary>Confidence accessor for the <see cref="ILemming"/> contract.</summary>
+        public float GetConfidence() => confidence; // :contentReference[oaicite:4]{index=4}
+
+        // ------------------------------------ Utilities -----------------------------------
+
+        /// <summary>
+        /// Clears runtime caches (Transform and Lemming) without touching serialized fields.
+        /// Call if you suspect the underlying object changed components or was reparented.
+        /// </summary>
+        public void InvalidateCache()
+        {
+            _cachedTransform = null;
+            _cachedLemming   = null;
+            _lastResolveFrame = 0;
+        }
+
+        /// <summary>
+        /// Ensures <see cref="Source"/> is resolved now (if null) and caches Transform/Lemming.
+        /// Useful to front-load lookup costs during initialization.
+        /// </summary>
+        public void EnsureResolved()
+        {
+            if (!source) _ = Source; // triggers one resolve + cache
+        }
+    }
+
+    
+    
+    // Goal: Remove Get Component call in update - this is previous method below
+    /*
+         
     /// <summary>
     /// A single named Lemming entry in the herd.
     /// </summary>
     [System.Serializable]
     public struct LemmingReference: ILemming
     {
+
         [SerializeField] private GameObject source;
+        
         public string scenePath;
         public string objectName;
 
@@ -991,7 +1161,10 @@ namespace Lemmings
         
         // TODO: Figure out method for testing and reflecting the confidence of the lemming
         public float GetConfidence() => confidence;
-    }
+    }*/
+        
+        
+        
     #endregion
     
     //------------------------------------------------------
@@ -1398,7 +1571,7 @@ namespace Lemmings
     //------------------------------------------------------
 
     #region Lemmings Rendering Support for URP
- /// <summary>
+    /// <summary>
     /// A custom render pass that draws debug visuals for all active <see cref="LemmingProxyVisualizer"/> instances in URP.
     /// Uses GL drawing and must be executed after normal scene rendering.
     /// </summary>
@@ -1429,7 +1602,7 @@ namespace Lemmings
         /// </summary>
         public void SetTargets()
         {
-            visualizers = Object.FindObjectsOfType<LemmingProxyVisualizer>();
+            visualizers = Object.FindObjectsByType<LemmingProxyVisualizer>(FindObjectsSortMode.None);
         }
 
         /// <summary>
@@ -1445,7 +1618,7 @@ namespace Lemmings
             foreach (var viz in visualizers)
             {
                 if (viz != null &&
-                    viz.useEditorVisuals &&  // NOTE: You may have meant `useVisuals`
+                    viz.useEditorVisuals &&  
                     viz.useRuntimeVisuals &&
                     viz.runtimeDebugMaterial != null)
                 {

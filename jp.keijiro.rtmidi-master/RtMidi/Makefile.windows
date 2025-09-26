@@ -1,0 +1,13 @@
+PLATFORM = Windows
+ARCH = x86_64
+TARGET_TYPE = dll
+MIDI_API = __WINDOWS_MM__
+
+TOOLCHAIN = $(ARCH)-w64-mingw32
+CC = $(TOOLCHAIN)-g++
+STRIP = $(TOOLCHAIN)-strip
+
+LDFLAGS = -shared
+LIBS = -Wl,-Bstatic -lwinmm -static-libgcc
+
+include Common.mk

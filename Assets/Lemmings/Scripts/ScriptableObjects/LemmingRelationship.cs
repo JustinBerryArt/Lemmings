@@ -168,7 +168,7 @@ namespace Lemmings
         /// <summary>
         /// Number of valid members in the relationship.
         /// </summary>
-        public int Count => Members.Count;
+        public int Count => References.Count;
         
         
         /// <summary>
@@ -262,6 +262,7 @@ namespace Lemmings
                 
         
         // public accessor for the full list of Lemmings
+        /// <remarks>Avoid at runtime; allocates a new List each access. Use References.SourceTransform if possible.</remarks>
         public List<GameObject> Members
         {
             get
@@ -486,7 +487,7 @@ namespace Lemmings
         public LemmingDatum SetValue()
         {
             LemmingDatum datum;
-            if (Members.Count > 0)
+            if (References.Count > 0)
                 // my relation is the struct, holding the selected options, used to evaluate the datum value
                 datum = MyRelation.ToDatum();
             else

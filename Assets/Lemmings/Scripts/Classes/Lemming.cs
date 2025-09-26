@@ -37,6 +37,8 @@ namespace Lemmings
         /// </summary>
         [Tooltip("Leave this blank by default. If you want to mirror the position and rotation of another object, drag it here")]
         public GameObject objectToTrack;
+
+
         
         /// <summary>
         /// Read-Only accessor for the object this Lemming is matching

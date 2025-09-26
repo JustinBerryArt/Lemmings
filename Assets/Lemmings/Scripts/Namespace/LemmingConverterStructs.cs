@@ -20,7 +20,9 @@ namespace Lemmings
 
         public object Raw => rawBool;
 
-        public float Normalized => Mathf.Clamp01((Value - min) / (max - min));
+        public float Normalized => Mathf.Approximately(max - min, 0f) 
+            ? 0f 
+            : Mathf.Clamp01((Value - min) / (max - min));
 
         public float AsAxis => Normalized * 2f - 1f;
 
@@ -70,7 +72,9 @@ namespace Lemmings
         public float max;
 
         /// <summary>Returns the normalized value of <c>raw</c> within the range [<c>min</c>, <c>max</c>], clamped between 0 and 1.</summary>
-        public float Normalized => Mathf.Clamp01((raw - min) / (max - min));
+        public float Normalized => Mathf.Approximately(max - min, 0f) 
+            ? 0f 
+            : Mathf.Clamp01((raw - min) / (max - min));
 
         /// <summary>Returns <c>true</c> if <c>raw</c> is greater than or equal to <c>threshold</c>.</summary>
         public bool Over => raw >= max;
@@ -139,7 +143,7 @@ namespace Lemmings
         /// <returns>Float within [<paramref name="maximum"/>, <paramref name="maximum"/>].</returns>
         public float ToFloatRange(float minimum, float maximum)
         {
-            return Mathf.Lerp(minimum, max, Normalized);
+            return Mathf.Lerp(minimum, maximum, Normalized);
         }
 
         
@@ -151,7 +155,7 @@ namespace Lemmings
         /// <returns>Index from 0 to arrayCount - 1.</returns>
         public int ToIndex(int arrayCount)
         {
-            return Mathf.FloorToInt(Normalized * arrayCount);
+            return Mathf.Clamp(Mathf.FloorToInt(Normalized * arrayCount), 0, arrayCount - 1);
         }
 
         
@@ -1125,6 +1129,7 @@ namespace Lemmings
         /// <summary>
         /// Checks if this vector is facing toward a given Transform.
         /// </summary>
+        /// <remarks>This is used when raw is a position value, if it is a rotation or direction use the overload below</remarks>
         /// <param name="target">The target transform.</param>
         /// <param name="threshold">Dot product threshold (default = 0.95).</param>
         /// <returns>True if the vector is approximately facing the target.</returns>
@@ -1135,10 +1140,40 @@ namespace Lemmings
             return Vector3.Dot(raw.normalized, toTarget) >= threshold;
         }
 
+        /// <summary>
+        /// Checks if this vector is facing toward a given Transform.
+        /// This is an overload in the event that raw represents a rotation or direction instead of a position
+        /// </summary>
+        /// <remarks>This is used when raw is a rotation or direction and an explict reference position is required</remarks>
+        /// <param name="target">The target transform.</param>
+        /// <param name="currentPosition">The position of the 'looking' object</param>
+        /// <param name="threshold">Dot product threshold (default = 0.95).</param>
+        /// <returns>True if the vector is approximately facing the target.</returns>
+        public bool IsFacingObject(Transform target, Vector3 currentPosition, float threshold = 0.95f)
+        {
+            if (!target) return false;
+            Vector3 toTarget = (target.position - currentPosition).normalized;
+            return Vector3.Dot(Direction, toTarget) >= threshold;
+        }
+        
         
         //_______________  METHOD BREAK   ___________________//
 
 
+        /// <summary>
+        /// Checks if this GameObject is facing toward a given Transform.
+        /// This is an overload in the event that raw represents a rotation or direction instead of a position
+        /// </summary>
+        /// /// <remarks>This is used when raw is a rotation or direction and an explict reference position is required</remarks>
+        /// <param name="target">The target transform.</param>
+        /// <param name="currentPosition">The position of the 'looking' object</param>
+        /// <param name="threshold">Dot product threshold (default = 0.95).</param>
+        /// <returns>True if the vector is approximately facing the target.</returns>
+        public bool IsFacingObject(GameObject target, Vector3 currentPosition, float threshold = 0.95f)
+        {
+            return target != null && IsFacingObject(target.transform, currentPosition, threshold);
+        }
+        
         /// <summary>
         /// Checks if this vector is facing toward a given GameObject.
         /// </summary>
@@ -1187,13 +1222,12 @@ namespace Lemmings
         /// </summary>
         /// <param name="newMax">The new max magnitude.</param>
         /// <param name="newMin">New min magnitude.</param>
-        public void SetRange(float newMax, float newMin)
+        public void SetRange(float newMin, float newMax)
         {
-            if (Mathf.Approximately(minMagnitude, maxMagnitude))
+            if (Mathf.Approximately(newMax - newMin, 0f))
                 throw new ArgumentException("min and max cannot be equal.");
-            
+            minMagnitude = newMin;
             maxMagnitude = newMax;
-            minMagnitude = newMin; 
         }
 
         
@@ -1208,12 +1242,11 @@ namespace Lemmings
         /// <param name="newMin">New min magnitude.</param>
         public void Reset(Vector3 newRaw, float newMax, float newMin)
         {
-            if (Mathf.Approximately(minMagnitude, maxMagnitude))
+            if (Mathf.Approximately(newMax - newMin, 0f))
                 throw new ArgumentException("min and max cannot be equal.");
-            
             raw = newRaw;
-            maxMagnitude = newMax;
             minMagnitude = newMin;
+            maxMagnitude = newMax;
         }
         #endregion
     }
@@ -1257,11 +1290,24 @@ namespace Lemmings
         /// The minimum angle used to normalize the rotation magnitude.
         /// </summary>
         public float minAngle;
+        /// <summary>Reference for normalization.</summary>
+        /// 
+        public Quaternion reference;
+
+        /// <summary>Returns the normalized angle difference between <see cref="raw"/> and <see cref="reference"/>.</summary>
+        public float Normalized
+        {
+            get
+            {
+                float denom = maxAngle - minAngle;
+                if (Mathf.Approximately(denom, 0f)) return 0f;
+
+                // angle between current rotation and reference rotation (in degrees)
+                float angle = Quaternion.Angle(reference, raw);
+                return Mathf.Clamp01((angle - minAngle) / denom);
+            }
+        }
         
-        /// <summary>
-        /// Returns the normalized value between minAngle and maxAngle.
-        /// </summary>
-        public float Normalized => Mathf.Clamp01((Angle() - minAngle) / (maxAngle - minAngle));
         /// <summary>
         /// Returns true if the angle is greater than the maximum angle set.
         /// </summary>
@@ -1298,10 +1344,12 @@ namespace Lemmings
 
         /// <summary>
         /// Constructs a new LemmingRotater with a rotation and max angle.
+        /// Sets reference as Quaternion identity if no reference is provided
         /// </summary>
         /// <param name="raw">The rotation to store.</param>
-        /// <param name="maxAngle">The angle to use for normalization reference.</param>
-        public LemmingRotater(Quaternion raw, float maxAngle, float minAngle)
+        /// <param name="maxAngle">The maximum angle to use for normalization reference.</param>
+        /// <param name="minAngle">The minimum angle to use for normalization reference.</param>
+        public LemmingRotater(Quaternion raw, float minAngle, float maxAngle)
         {
             if (Mathf.Approximately(minAngle, maxAngle))
                 throw new ArgumentException("min and max cannot be equal.");
@@ -1309,6 +1357,26 @@ namespace Lemmings
             this.raw = raw;
             this.maxAngle = maxAngle;
             this.minAngle = minAngle;
+            this.reference = Quaternion.identity;
+        }
+        
+        /// <summary>
+        /// Constructs a new LemmingRotater with a rotation and max angle.
+        /// Sets reference as Quaternion identity if no reference is provided
+        /// </summary>
+        /// <param name="raw">The rotation to store.</param>
+        /// <param name="maxAngle">The angle to use for normalization reference.</param>
+        /// <param name="minAngle">The minimum angle to use for normalization reference.</param>
+        /// <param name="reference">The reference rotation to be used for normalization.</param>
+        public LemmingRotater(Quaternion raw, float minAngle, float maxAngle, Quaternion reference)
+        {
+            if (Mathf.Approximately(minAngle, maxAngle))
+                throw new ArgumentException("min and max cannot be equal.");
+            
+            this.raw = raw;
+            this.maxAngle = maxAngle;
+            this.minAngle = minAngle;
+            this.reference = reference;
         }
 
         #endregion
@@ -1625,11 +1693,10 @@ namespace Lemmings
         /// /// <param name="newMin">The new minimum angle.</param>
         public void SetRange(float newMax, float newMin)
         {
-            if (Mathf.Approximately(minAngle, maxAngle))
+            if (Mathf.Approximately(newMax - newMin, 0f))
                 throw new ArgumentException("min and max cannot be equal.");
-            
-            maxAngle = newMax;
             minAngle = newMin;
+            maxAngle = newMax;
         }
 
         
@@ -1644,12 +1711,11 @@ namespace Lemmings
         /// /// <param name="newMinAngle">The new minimum angle.</param>
         public void Reset(Quaternion newRotation, float newMaxAngle, float newMinAngle)
         {
-            if (Mathf.Approximately(minAngle, maxAngle))
+            if (Mathf.Approximately(newMaxAngle - newMinAngle, 0f))
                 throw new ArgumentException("min and max cannot be equal.");
-            
             raw = newRotation;
-            maxAngle = newMaxAngle;
             minAngle = newMinAngle;
+            maxAngle = newMaxAngle;
         }
         #endregion
     }

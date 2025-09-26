@@ -71,13 +71,13 @@ namespace Lemmings
 
         [Header("Status Colors")]
         /// <summary>Color used when the relationship is in the expected range.</summary>
-        public Color inRangeColor = Color.green;
+        public Color inRangeColor = new Color(0f, 1f, 0f, 0.1f);
 
         /// <summary>Color used when the normalized value is above the max threshold.</summary>
-        public Color overColor = Color.red;
+        public Color overColor = new Color(1f, 0f, 0f, 0.1f);
 
         /// <summary>Color used when the normalized value is below the min threshold.</summary>
-        public Color underColor = Color.yellow;
+        public Color underColor = new Color(0f, 0f, 1f, 0.1f);
 
         [Header("Axis Settings")]
         /// <summary>

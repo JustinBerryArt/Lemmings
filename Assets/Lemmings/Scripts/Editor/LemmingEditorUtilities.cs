@@ -2034,6 +2034,7 @@ namespace Lemmings
     public static class LemmingPrefabInstantiater
     {
         private const string prefabShepherdPath = "Assets/Lemmings/Prefabs/LemmingShepherd.prefab";
+        private const string prefabShepherdXRPath = "Assets/Lemmings/Prefabs/LemmingShepherdXR.prefab";
         private const string prefabProxyPath = "Assets/Lemmings/Prefabs/LemmingRelationshipProxy.prefab";
         private const string prefabSecondaryMetricPath = "Assets/Lemmings/Prefabs/LemmingSecondaryMetric.prefab";
         private const string prefabUIPath = "Assets/Lemmings/Prefabs/LemmingUI.prefab";
@@ -2068,7 +2069,37 @@ namespace Lemmings
             EditorGUIUtility.PingObject(instance);
             Selection.activeGameObject = instance;
         }
+        
+        
+        //-------------------------------------------------------------------------------
+        //                           Create Shepherd XR
+        //-------------------------------------------------------------------------------
+        
+        
+        [MenuItem("Lemmings/Game Objects/Create Lemming Shepherd XR (Singleton)")]
+        public static void InstantiateLemmingShepherdXRPrefab()
+        {
+            GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabShepherdXRPath);
+            if (prefab == null)
+            {
+                Debug.LogError($"[LemmingPrefabCreator] Prefab not found at path: {prefabShepherdPath}");
+                return;
+            }
 
+            GameObject instance = PrefabUtility.InstantiatePrefab(prefab) as GameObject;
+
+            // Position it at the scene view center
+            if (SceneView.lastActiveSceneView != null)
+            {
+                var scenePos = SceneView.lastActiveSceneView.pivot;
+                instance.transform.position = scenePos;
+            }
+
+            // Register undo and mark scene dirty
+            Undo.RegisterCreatedObjectUndo(instance, "Instantiate Lemming Shepherd XR");
+            EditorGUIUtility.PingObject(instance);
+            Selection.activeGameObject = instance;
+        }
         //-------------------------------------------------------------------------------
         //                           Create Proxy
         //-------------------------------------------------------------------------------

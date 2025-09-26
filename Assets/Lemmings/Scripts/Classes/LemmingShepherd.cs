@@ -92,22 +92,23 @@ namespace Lemmings
         /// </summary>
         private void Update()
         {
-            foreach (var rel in Relationships)
+            for (int i = 0; i < Relationships.Count; i++)
             {
-                // 1) Update the Shepherd’s own copy in the Dictionary:
-                if (RelationshipDetails.TryGetValue(rel, out var shepherdDictionaryInfo))
-                {
-                    shepherdDictionaryInfo.RefreshDynamic();              // calls the struct’s method
-                    RelationshipDetails[rel] = shepherdDictionaryInfo;    // store it back
-                }
+                var rel = Relationships[i];
+                if (!rel) continue;
 
-                // 2) Update the scriptable object’s internal cache:
-                ref var scriptableObjectInfo = ref rel.CachedInfo;       // get ref to the SO’s _cachedInfo
-                scriptableObjectInfo.RefreshDynamic();                   // refresh dynamic on it
-                
-                // 3) Compare the status to see if there is a change in order to fire off event
+                // Refresh the SO cache once
+                ref var soInfo = ref rel.CachedInfo;
+                soInfo.RefreshDynamic();
+
+                // Mirror that into the Shepherd dictionary (struct copy)
+                RelationshipDetails[rel] = soInfo;
+
+                // Fire events on state changes
                 rel.CompareStatus();
             }
+            
+            //Debug.Log(ValidRelationships.Count());
         }
         
         
@@ -197,7 +198,9 @@ namespace Lemmings
             // adds it to the dictionary LemmingToRelationships
             foreach (var reference in relationship.References)
             {
-                var lemming = reference.Source?.GetComponent<Lemming>();
+                reference.EnsureResolved();
+
+                var lemming = reference.Lemming;
                 if (lemming == null) continue;
 
                 if (!LemmingToRelationships.ContainsKey(lemming))
@@ -286,15 +289,19 @@ namespace Lemmings
 
             // Load all LemmingRelationships from Resources (requires proper setup)
             LemmingRelationship[] allRelationships = Resources.LoadAll<LemmingRelationship>("LemmingRelationships");
-
+            
+            
             foreach (var relationship in allRelationships)
             {
                 if (relationship == null || relationship.Herd == null) continue;
-
+                
+                foreach (var reference in relationship.References)
+                    reference.EnsureResolved();
+                
                 bool relevant = relationship.References.Any(r =>
                     r.Source != null &&
-                    r.Source.GetComponent<Lemming>() is Lemming l &&
-                    Lemmings.Contains(l));
+                    r.Lemming != null &&
+                    Lemmings.Contains(r.Lemming));
 
                 if (relevant)
                 {
@@ -316,10 +323,10 @@ namespace Lemmings
         public void ValidateScene()
         {
             var orphaned = Relationships.Where(relationship =>
-                !relationship.References.Any(lemmingReference =>
-                    lemmingReference.Source != null &&
-                    lemmingReference.Source.GetComponent<Lemming>() is Lemming l &&
-                    Lemmings.Contains(l))
+                !relationship.References.Any(r =>
+                    r.SourceTransform != null &&           // optional; or just r.Source != null
+                    r.Lemming != null &&
+                    Lemmings.Contains(r.Lemming))
             ).ToList();
 
             foreach (var relationship in orphaned)

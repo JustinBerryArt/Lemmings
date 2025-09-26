@@ -240,6 +240,8 @@ public class LemmingUIRemappingController : MonoBehaviour
     /// </summary>
     private void PopulateRelationships()
     {
+        Debug.Log("Number of relationships discovered: " + LemmingShepherd.Instance.ValidRelationships.Count());
+        
         if (relationshipDataPrefab == null) {
             Debug.LogError("[UI] relationshipDataPrefab is _not_ assigned!", this);
             return;

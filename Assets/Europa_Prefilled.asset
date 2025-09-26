@@ -1,0 +1,593 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Europa_Prefilled
+  m_EditorClassIdentifier: Assembly-CSharp:ReasonMidi:ReasonEuropaPreset_Default
+  channel: 0
+  eng1Type:
+    name: E1 Type
+    address:
+      kind: 0
+      a: 81
+      b: 0
+    min: 0
+    max: 127
+    bipolar: 0
+  eng1Position:
+    name: E1 Position
+    address:
+      kind: 2
+      a: 80
+      b: 112
+    min: 0
+    max: 1
+    bipolar: 0
+  eng1Harmonics:
+    name: E1 Harmonics
+    address:
+      kind: 2
+      a: 81
+      b: 113
+    min: 0
+    max: 1
+    bipolar: 0
+  eng1Shift:
+    name: E1 Shift
+    address:
+      kind: 2
+      a: 82
+      b: 114
+    min: 0
+    max: 1
+    bipolar: 0
+  eng1Modify:
+    name: E1 Modify
+    address:
+      kind: 2
+      a: 83
+      b: 115
+    min: 0
+    max: 1
+    bipolar: 0
+  eng1Motion:
+    name: E1 Motion
+    address:
+      kind: 2
+      a: 84
+      b: 116
+    min: 0
+    max: 1
+    bipolar: 0
+  eng1Octave:
+    name: E1 Octave
+    address:
+      kind: 2
+      a: 85
+      b: 117
+    min: -2
+    max: 2
+    bipolar: 0
+  eng1Semitone:
+    name: E1 Semitone
+    address:
+      kind: 2
+      a: 86
+      b: 118
+    min: -12
+    max: 12
+    bipolar: 0
+  eng1Fine:
+    name: E1 Fine Cents
+    address:
+      kind: 2
+      a: 87
+      b: 119
+    min: -100
+    max: 100
+    bipolar: 1
+  eng1KeyTrack:
+    name: E1 KeyTrack
+    address:
+      kind: 2
+      a: 80
+      b: 112
+    min: 0
+    max: 1
+    bipolar: 0
+  eng1Level:
+    name: E1 Level
+    address:
+      kind: 2
+      a: 81
+      b: 113
+    min: 0
+    max: 1
+    bipolar: 0
+  eng2Type:
+    name: E2 Type
+    address:
+      kind: 0
+      a: 71
+      b: 0
+    min: 0
+    max: 127
+    bipolar: 0
+  eng2Position:
+    name: E2 Position
+    address:
+      kind: 2
+      a: 76
+      b: 108
+    min: 0
+    max: 1
+    bipolar: 0
+  eng2Harmonics:
+    name: E2 Harmonics
+    address:
+      kind: 2
+      a: 77
+      b: 109
+    min: 0
+    max: 1
+    bipolar: 0
+  eng2Shift:
+    name: E2 Shift
+    address:
+      kind: 2
+      a: 78
+      b: 110
+    min: 0
+    max: 1
+    bipolar: 0
+  eng2Modify:
+    name: E2 Modify
+    address:
+      kind: 2
+      a: 79
+      b: 111
+    min: 0
+    max: 1
+    bipolar: 0
+  eng2Motion:
+    name: E2 Motion
+    address:
+      kind: 2
+      a: 70
+      b: 102
+    min: 0
+    max: 1
+    bipolar: 0
+  eng2Octave:
+    name: E2 Octave
+    address:
+      kind: 2
+      a: 71
+      b: 103
+    min: -2
+    max: 2
+    bipolar: 0
+  eng2Semitone:
+    name: E2 Semitone
+    address:
+      kind: 2
+      a: 72
+      b: 104
+    min: -12
+    max: 12
+    bipolar: 0
+  eng2Fine:
+    name: E2 Fine Cents
+    address:
+      kind: 2
+      a: 73
+      b: 105
+    min: -100
+    max: 100
+    bipolar: 1
+  eng2KeyTrack:
+    name: E2 KeyTrack
+    address:
+      kind: 2
+      a: 74
+      b: 106
+    min: 0
+    max: 1
+    bipolar: 0
+  eng2Level:
+    name: E2 Level
+    address:
+      kind: 2
+      a: 75
+      b: 107
+    min: 0
+    max: 1
+    bipolar: 0
+  eng3Type:
+    name: E3 Type
+    address:
+      kind: 0
+      a: 61
+      b: 0
+    min: 0
+    max: 127
+    bipolar: 0
+  eng3Position:
+    name: E3 Position
+    address:
+      kind: 2
+      a: 60
+      b: 92
+    min: 0
+    max: 1
+    bipolar: 0
+  eng3Harmonics:
+    name: E3 Harmonics
+    address:
+      kind: 2
+      a: 61
+      b: 93
+    min: 0
+    max: 1
+    bipolar: 0
+  eng3Shift:
+    name: E3 Shift
+    address:
+      kind: 2
+      a: 62
+      b: 94
+    min: 0
+    max: 1
+    bipolar: 0
+  eng3Modify:
+    name: E3 Modify
+    address:
+      kind: 2
+      a: 63
+      b: 95
+    min: 0
+    max: 1
+    bipolar: 0
+  eng3Motion:
+    name: E3 Motion
+    address:
+      kind: 2
+      a: 64
+      b: 96
+    min: 0
+    max: 1
+    bipolar: 0
+  eng3Octave:
+    name: E3 Octave
+    address:
+      kind: 2
+      a: 65
+      b: 97
+    min: -2
+    max: 2
+    bipolar: 0
+  eng3Semitone:
+    name: E3 Semitone
+    address:
+      kind: 2
+      a: 66
+      b: 98
+    min: -12
+    max: 12
+    bipolar: 0
+  eng3Fine:
+    name: E3 Fine Cents
+    address:
+      kind: 2
+      a: 67
+      b: 99
+    min: -100
+    max: 100
+    bipolar: 1
+  eng3KeyTrack:
+    name: E3 KeyTrack
+    address:
+      kind: 2
+      a: 60
+      b: 92
+    min: 0
+    max: 1
+    bipolar: 0
+  eng3Level:
+    name: E3 Level
+    address:
+      kind: 2
+      a: 61
+      b: 93
+    min: 0
+    max: 1
+    bipolar: 0
+  mixEng12Balance:
+    name: Mix E1-E2 Balance
+    address:
+      kind: 2
+      a: 82
+      b: 114
+    min: -1
+    max: 1
+    bipolar: 1
+  mixEng3Level:
+    name: Mix E3 Level
+    address:
+      kind: 2
+      a: 83
+      b: 115
+    min: 0
+    max: 1
+    bipolar: 0
+  unisonVoices:
+    name: Unison Voices
+    address:
+      kind: 0
+      a: 84
+      b: 0
+    min: 0
+    max: 127
+    bipolar: 0
+  unisonDetune:
+    name: Unison Detune
+    address:
+      kind: 2
+      a: 85
+      b: 117
+    min: 0
+    max: 1
+    bipolar: 0
+  unisonSpread:
+    name: Unison Spread
+    address:
+      kind: 2
+      a: 86
+      b: 118
+    min: 0
+    max: 1
+    bipolar: 0
+  filterType:
+    name: Filter Type
+    address:
+      kind: 0
+      a: 68
+      b: 0
+    min: 0
+    max: 127
+    bipolar: 0
+  filterFreq:
+    name: Filter Cutoff
+    address:
+      kind: 2
+      a: 74
+      b: 106
+    min: 0
+    max: 1
+    bipolar: 0
+  filterRes:
+    name: Filter Resonance
+    address:
+      kind: 2
+      a: 71
+      b: 103
+    min: 0
+    max: 1
+    bipolar: 0
+  filterDrive:
+    name: Filter Drive
+    address:
+      kind: 2
+      a: 69
+      b: 101
+    min: 0
+    max: 1
+    bipolar: 0
+  filterKeyTrack:
+    name: Filter KeyTrack
+    address:
+      kind: 2
+      a: 70
+      b: 102
+    min: 0
+    max: 1
+    bipolar: 0
+  filterEnvAmt:
+    name: Filter Env Amt
+    address:
+      kind: 2
+      a: 72
+      b: 104
+    min: -1
+    max: 1
+    bipolar: 1
+  ampAtk:
+    name: Amp Attack (s)
+    address:
+      kind: 2
+      a: 73
+      b: 105
+    min: 0
+    max: 10
+    bipolar: 0
+  ampDec:
+    name: Amp Decay (s)
+    address:
+      kind: 2
+      a: 75
+      b: 107
+    min: 0
+    max: 10
+    bipolar: 0
+  ampSus:
+    name: Amp Sustain
+    address:
+      kind: 2
+      a: 70
+      b: 102
+    min: 0
+    max: 1
+    bipolar: 0
+  ampRel:
+    name: Amp Release (s)
+    address:
+      kind: 2
+      a: 72
+      b: 104
+    min: 0
+    max: 10
+    bipolar: 0
+  modAtk:
+    name: Mod Attack (s)
+    address:
+      kind: 2
+      a: 76
+      b: 108
+    min: 0
+    max: 10
+    bipolar: 0
+  modDec:
+    name: Mod Decay (s)
+    address:
+      kind: 2
+      a: 77
+      b: 109
+    min: 0
+    max: 10
+    bipolar: 0
+  modSus:
+    name: Mod Sustain
+    address:
+      kind: 2
+      a: 78
+      b: 110
+    min: 0
+    max: 1
+    bipolar: 0
+  modRel:
+    name: Mod Release (s)
+    address:
+      kind: 2
+      a: 79
+      b: 111
+    min: 0
+    max: 10
+    bipolar: 0
+  lfo1Rate:
+    name: LFO1 Rate
+    address:
+      kind: 2
+      a: 76
+      b: 108
+    min: 0
+    max: 1
+    bipolar: 0
+  lfo1Amt:
+    name: LFO1 Amount
+    address:
+      kind: 2
+      a: 78
+      b: 110
+    min: 0
+    max: 1
+    bipolar: 0
+  lfo1Shape:
+    name: LFO1 Shape
+    address:
+      kind: 0
+      a: 77
+      b: 0
+    min: 0
+    max: 127
+    bipolar: 0
+  lfo1Sync:
+    name: LFO1 Sync
+    address:
+      kind: 0
+      a: 79
+      b: 0
+    min: 0
+    max: 127
+    bipolar: 0
+  lfo2Rate:
+    name: LFO2 Rate
+    address:
+      kind: 2
+      a: 66
+      b: 98
+    min: 0
+    max: 1
+    bipolar: 0
+  lfo2Amt:
+    name: LFO2 Amount
+    address:
+      kind: 2
+      a: 67
+      b: 99
+    min: 0
+    max: 1
+    bipolar: 0
+  lfo2Shape:
+    name: LFO2 Shape
+    address:
+      kind: 0
+      a: 65
+      b: 0
+    min: 0
+    max: 127
+    bipolar: 0
+  lfo2Sync:
+    name: LFO2 Sync
+    address:
+      kind: 0
+      a: 64
+      b: 0
+    min: 0
+    max: 127
+    bipolar: 0
+  shaperDrive:
+    name: Shaper Drive
+    address:
+      kind: 2
+      a: 81
+      b: 113
+    min: 0
+    max: 1
+    bipolar: 0
+  shaperType:
+    name: Shaper Type
+    address:
+      kind: 0
+      a: 82
+      b: 0
+    min: 0
+    max: 127
+    bipolar: 0
+  effect1:
+    name: FX1
+    address:
+      kind: 2
+      a: 83
+      b: 115
+    min: 0
+    max: 1
+    bipolar: 0
+  effect2:
+    name: FX2
+    address:
+      kind: 2
+      a: 84
+      b: 116
+    min: 0
+    max: 1
+    bipolar: 0
+  autoFillOnEnable: 1
+  _initialized: 1

@@ -491,10 +491,9 @@ namespace Lemmings
         /// <returns>The position of the Lemming source</returns>
         private Vector3 SinglePosition(LemmingRelationSetting setting = null)
         {
-            if (Members.Count == 0 || Members[0] == null)
-                return Vector3.zero;
+            if (References.Count == 0 || !References[0].SourceTransform) return Vector3.zero;
 
-            Vector3 position = Members[0].transform.position;
+            Vector3 position = References[0].SourceTransform.position;
             
             return position;
         }
@@ -510,10 +509,9 @@ namespace Lemmings
         /// <returns>The value of the Lemming source in a given axis</returns>
         private float SinglePositionFloat(LemmingRelationSetting setting = null)
         {
-            if (Members.Count == 0 || Members[0] == null)
-                return 0f;
-            
-            Vector3 position = Members[0].transform.position;
+            if (References.Count == 0 || !References[0].SourceTransform) return 0f;
+
+            Vector3 position = References[0].SourceTransform.position;
             
             if (setting.useSingleAxis)
             {
@@ -541,11 +539,9 @@ namespace Lemmings
         /// <returns>The rotation of the Lemming source</returns>
         private Quaternion SingleRotation(LemmingRelationSetting setting = null)
         {
-            if (Members.Count == 0 || Members[0] == null)
-                return Quaternion.identity;
+            if (References.Count == 0 || !References[0].SourceTransform) return Quaternion.identity;
             
-            var thisTransform = Members[0]?.transform;
-            return thisTransform?.rotation ?? Quaternion.identity;
+            return References[0].SourceTransform.rotation;
         }
         
         
@@ -578,17 +574,19 @@ namespace Lemmings
         /// <returns>Velocity vector of the single Lemming.</returns>
         private Vector3 SingleMovement(LemmingRelationSetting setting = null)
         {
-            if (Members.Count == 0 || Members[0] == null)
-                return Vector3.zero;
-
-            var lemming = Members[0].GetComponent<Lemming>();
+            if (References.Count == 0 || !References[0].SourceTransform) return Vector3.zero;
+            
+            var lemming = References[0].Lemming;
             if (lemming == null) return Vector3.zero;
 
             Vector3 velocity = lemming.Velocity;
 
             if (setting?.relativeToObject == true && setting.objectToReference != null)
             {
-                var refVel = setting.objectToReference.GetComponent<Lemming>()?.Velocity ?? Vector3.zero;
+                Vector3 refVel = Vector3.zero;
+                if (setting.objectToReference && setting.objectToReference.TryGetComponent(out Lemming refLem))
+                    refVel = refLem.Velocity;
+                
                 velocity -= refVel;
             }
 
@@ -685,11 +683,11 @@ namespace Lemmings
         /// <returns>The average Vector3 position</returns>
         private Vector3 CouplePosition(LemmingRelationSetting setting = null)
         {
-            if (Members.Count < 2 || Members[0] == null || Members[1] == null)
-                return Vector3.zero;
-
-            Vector3 a = Members[0].transform.position;
-            Vector3 b = Members[1].transform.position;
+            if (References.Count < 2 || !References[0].SourceTransform || !References[1].SourceTransform) return Vector3.zero;
+            
+            Vector3 a = References[0].SourceTransform.position;
+            Vector3 b = References[1].SourceTransform.position;
+            
             Vector3 average = (a + b) * 0.5f;
 
             return average;
@@ -706,11 +704,10 @@ namespace Lemmings
         /// <returns>A float representing either a selected axis or the magnitude of the average position</returns>
         private float CouplePositionFloat(LemmingRelationSetting setting = null)
         {
-            if (Members.Count < 2 || Members[0] == null || Members[1] == null)
-                return 0f;
-
-            Vector3 a = Members[0].transform.position;
-            Vector3 b = Members[1].transform.position;
+            if (References.Count < 2 || !References[0].SourceTransform || !References[1].SourceTransform) return 0f;
+            
+            Vector3 a = References[0].SourceTransform.position;
+            Vector3 b = References[1].SourceTransform.position;
             Vector3 average = (a + b) * 0.5f;
 
             if (setting?.useSingleAxis == true)
@@ -739,11 +736,10 @@ namespace Lemmings
         /// <returns>A Quaternion representing the orientation of the couple.</returns>
         private Quaternion CoupleRotation(LemmingRelationSetting setting = null)
         {
-            if (Members.Count < 2 || Members[0] == null || Members[1] == null)
-                return Quaternion.identity;
-
-            Vector3 leader = Members[0].transform.position;
-            Vector3 follower = Members[1].transform.position;
+            if (References.Count < 2 || !References[0].SourceTransform || !References[1].SourceTransform) return Quaternion.identity;
+            
+            Vector3 leader = References[0].SourceTransform.position;
+            Vector3 follower = References[1].SourceTransform.position;
 
             // Compute the forward direction from follower to leader
             Vector3 forward = (leader - follower).normalized;
@@ -766,7 +762,8 @@ namespace Lemmings
                     if (setting?.objectToReference != null)
                     {
                         Vector3 center = (leader + follower) * 0.5f;
-                        up = (center - setting.objectToReference.transform.position).normalized;
+                        var objT = setting.objectToReference ? setting.objectToReference.transform : null;
+                        if (objT) up = (center - objT.position).normalized;
                     }
                     break;
                 case AxisSelection.Custom:
@@ -814,13 +811,13 @@ namespace Lemmings
         /// <returns>The distance between the two Lemmings</returns>
         private float CoupleDistance(LemmingRelationSetting setting = null)
         {
-            if (Members.Count < 2 || Members[0] == null || Members[1] == null)
-                return 0f;
             
+            if (References.Count < 2 || !References[0].SourceTransform || !References[1].SourceTransform) return 0f;
+           
             DistanceUnit unit = setting?.distanceUnit ?? DistanceUnit.Meters;
             
-            float raw = Vector3.Distance(Members[0].transform.position, Members[1].transform.position);
-
+            float raw = Vector3.Distance(References[0].SourceTransform.position, References[1].SourceTransform.position);
+            
             float scale = unit switch
             {
                 DistanceUnit.Meters => 1,
@@ -845,19 +842,19 @@ namespace Lemmings
         /// <returns>Vector3 representing couple's motion.</returns>
         private Vector3 CoupleMovement(LemmingRelationSetting setting = null)
         {
-            if (Members.Count < 2 || Members[0] == null || Members[1] == null)
-                return Vector3.zero;
+            if (References.Count < 2 || !References[0].SourceTransform || !References[1].SourceTransform) return Vector3.zero;
 
-            var lemmingA = Members[0].GetComponent<Lemming>();
-            var lemmingB = Members[1].GetComponent<Lemming>();
+            var lemmingA = References[0].Lemming;
+            var lemmingB = References[1].Lemming;
 
             Vector3 velocityA = lemmingA?.Velocity ?? Vector3.zero;
             Vector3 velocityB = lemmingB?.Velocity ?? Vector3.zero;
 
             if (setting?.relativeToObject == true && setting.objectToReference != null)
             {
-                var refLemming = setting.objectToReference.GetComponent<Lemming>();
-                var refVel = refLemming?.Velocity ?? Vector3.zero;
+                Vector3 refVel = Vector3.zero;
+                if (setting.objectToReference && setting.objectToReference.TryGetComponent(out Lemming refL)) 
+                    refVel = refL.Velocity;
                 velocityA -= refVel;
                 velocityB -= refVel;
             }
@@ -882,13 +879,17 @@ namespace Lemmings
         /// <returns>Float representing motion of couple.</returns>
         private float CoupleMovementFloat(LemmingRelationSetting setting = null)
         {
-            if (setting?.relativeToMembers == true && Members.Count == 2)
+            if (setting?.relativeToMembers == true && References.Count == 2)
             {
-                var lemmingA = Members[0].GetComponent<Lemming>();
-                var lemmingB = Members[1].GetComponent<Lemming>();
+                if (References.Count < 2 || !References[0].SourceTransform || !References[1].SourceTransform) return 0f;
+                
+                var lemmingA = References[0].Lemming;
+                var lemmingB = References[1].Lemming;
+                
                 if (lemmingA == null || lemmingB == null) return 0f;
-
-                Vector3 direction = (Members[1].transform.position - Members[0].transform.position).normalized;
+                
+                Vector3 direction = (References[1].SourceTransform.position - References[0].SourceTransform.position).normalized;
+                
                 Vector3 relativeVelocity = lemmingB.Velocity - lemmingA.Velocity;
 
                 return Vector3.Dot(relativeVelocity, direction);
@@ -925,10 +926,9 @@ namespace Lemmings
         /// <returns>Vector3 direction from Member[0] to Member[1].</returns>
         private Vector3 CoupleDifference(LemmingRelationSetting setting = null)
         {
-            if (Members.Count < 2 || Members[0] == null || Members[1] == null)
-                return Vector3.zero;
-
-            return Members[1].transform.position - Members[0].transform.position;
+            if (References.Count < 2 || !References[0].SourceTransform || !References[1].SourceTransform) return Vector3.zero;
+            
+            return References[1].SourceTransform.position - References[0].SourceTransform.position;
         }
         
         
@@ -1017,12 +1017,11 @@ namespace Lemmings
         /// <returns>The average Vector3 position</returns>
         private Vector3 ThrouplePosition(LemmingRelationSetting setting = null)
         {
-            if (Members.Count < 3 || Members[0] == null || Members[1] == null || Members[2] == null)
-                return Vector3.zero;
-
-            Vector3 a = Members[0].transform.position;
-            Vector3 b = Members[1].transform.position;
-            Vector3 c = Members[2].transform.position;
+            if (References.Count < 3 || !References[0].SourceTransform || !References[1].SourceTransform || !References[2].SourceTransform) return Vector3.zero;
+            
+            Vector3 a = References[0].SourceTransform.position; 
+            Vector3 b = References[1].SourceTransform.position; 
+            Vector3 c = References[2].SourceTransform.position;
 
             return (a + b + c) / 3f;
         }
@@ -1038,12 +1037,11 @@ namespace Lemmings
         /// <returns>A float value representing a single axis, or magnitude, of the average position</returns>
         private float ThrouplePositionFloat(LemmingRelationSetting setting = null)
         {
-            if (Members.Count < 3 || Members[0] == null || Members[1] == null || Members[2] == null)
-                return 0f;
-
-            Vector3 a = Members[0].transform.position;
-            Vector3 b = Members[1].transform.position;
-            Vector3 c = Members[2].transform.position;
+            if (References.Count < 3 || !References[0].SourceTransform || !References[1].SourceTransform || !References[2].SourceTransform) return 0f;
+            
+            Vector3 a = References[0].SourceTransform.position; 
+            Vector3 b = References[1].SourceTransform.position; 
+            Vector3 c = References[2].SourceTransform.position;
 
             Vector3 average = (a + b + c) / 3f;
 
@@ -1072,12 +1070,11 @@ namespace Lemmings
         /// <returns>A Quaternion describing the orientation based on throuple layout.</returns>
         private Quaternion ThroupleRotation(LemmingRelationSetting setting = null)
         {
-            if (Members.Count < 3 || Members.Any(m => m == null))
-                return Quaternion.identity;
-
-            Vector3 a = Members[0].transform.position;
-            Vector3 b = Members[1].transform.position;
-            Vector3 c = Members[2].transform.position;
+            if (References.Count < 3 || !References[0].SourceTransform || !References[1].SourceTransform || !References[2].SourceTransform) return Quaternion.identity;
+            
+            Vector3 a = References[0].SourceTransform.position; 
+            Vector3 b = References[1].SourceTransform.position; 
+            Vector3 c = References[2].SourceTransform.position;
 
             Vector3 forward = Vector3.forward;
             Vector3 right = Vector3.right;
@@ -1131,9 +1128,11 @@ namespace Lemmings
 
         private Vector3 ThroupleDistance(LemmingRelationSetting setting = null)
         {
-            var a = Members[0].transform.position;
-            var b = Members[1].transform.position;
-            var c = Members[2].transform.position;
+            if (References.Count < 3 || !References[0].SourceTransform || !References[1].SourceTransform || !References[2].SourceTransform) return Vector3.zero;
+            
+            Vector3 a = References[0].SourceTransform.position; 
+            Vector3 b = References[1].SourceTransform.position; 
+            Vector3 c = References[2].SourceTransform.position;
             
             DistanceUnit unit = setting?.distanceUnit ?? DistanceUnit.Meters;
             
@@ -1166,12 +1165,11 @@ namespace Lemmings
         /// <returns>Float distance scaled to unit and selected configuration.</returns>
         private float ThroupleDistanceFloat(LemmingRelationSetting setting = null)
         {
-            if (Members.Count < 3 || Members.Any(m => m == null))
-                return 0f;
-
-            Vector3 a = Members[0].transform.position;
-            Vector3 b = Members[1].transform.position;
-            Vector3 c = Members[2].transform.position;
+            if (References.Count < 3 || !References[0].SourceTransform || !References[1].SourceTransform || !References[2].SourceTransform) return 0f;
+            
+            Vector3 a = References[0].SourceTransform.position; 
+            Vector3 b = References[1].SourceTransform.position; 
+            Vector3 c = References[2].SourceTransform.position;
 
             float scale = (setting?.distanceUnit ?? DistanceUnit.Meters) switch
             {
@@ -1206,12 +1204,11 @@ namespace Lemmings
         /// <returns>A Vector3 where X = angle at the Leader position, Y = angle at the Follower position, Z = angle at the Third position.</returns>
         private Vector3 ThroupleAngle(LemmingRelationSetting setting = null)
         {
-            if (Members.Count < 3 || Members.Any(m => m == null))
-                return Vector3.zero;
-
-            Vector3 a = Members[0].transform.position;
-            Vector3 b = Members[1].transform.position;
-            Vector3 c = Members[2].transform.position;
+            if (References.Count < 3 || !References[0].SourceTransform || !References[1].SourceTransform || !References[2].SourceTransform) return Vector3.zero;
+            
+            Vector3 a = References[0].SourceTransform.position; 
+            Vector3 b = References[1].SourceTransform.position; 
+            Vector3 c = References[2].SourceTransform.position;
 
             Vector3 ab = b - a;
             Vector3 ac = c - a;
@@ -1266,11 +1263,24 @@ namespace Lemmings
         /// <returns>Density as a float.</returns>
         private float ThroupleDensity(LemmingRelationSetting setting = null)
         {
-            if (Members.Count < 3 || Members.Any(m => m == null))
-                return 0f;
+            if (References.Count < 3 || !References[0].SourceTransform || !References[1].SourceTransform || !References[2].SourceTransform) return 0f;
+            
+            Vector3 a = References[0].SourceTransform.position; 
+            Vector3 b = References[1].SourceTransform.position; 
+            Vector3 c = References[2].SourceTransform.position;
 
-            Vector3 center = (Members[0].transform.position + Members[1].transform.position + Members[2].transform.position) / 3f;
-            float total = Members.Sum(m => Vector3.Distance(center, m.transform.position));
+            Vector3 center = (a + b + c) / 3f;
+            
+            float total = 0f;
+
+            for (int i = 0; i < References.Count; i++)
+            {
+                var t = References[i].SourceTransform;
+
+                if (!t) continue;
+
+                total += Vector3.Distance(center, t.position);
+            }
 
             float result = (setting?.densityMethod ?? DensityMethod.AverageFromCenter) switch
             {
@@ -1302,22 +1312,23 @@ namespace Lemmings
         /// <returns>Vector3 representing motion of throuple.</returns>
         private Vector3 ThroupleMovement(LemmingRelationSetting setting = null)
         {
-            if (Members.Count < 3 || Members.Any(m => m == null))
-                return Vector3.zero;
-
+            if (References.Count < 3 || !References[0].SourceTransform || !References[1].SourceTransform || !References[2].SourceTransform) return Vector3.zero;
+            
             Vector3 total = Vector3.zero;
             int count = 0;
 
-            foreach (var m in Members)
+            foreach (var reference in References)
             {
-                var lemming = m.GetComponent<Lemming>();
+                var lemming = reference.Lemming;
                 if (lemming == null) continue;
 
                 Vector3 velocity = lemming.Velocity;
 
                 if (setting?.relativeToObject == true && setting.objectToReference != null)
                 {
-                    var refVel = setting.objectToReference.GetComponent<Lemming>()?.Velocity ?? Vector3.zero;
+                    Vector3 refVel = Vector3.zero;
+                    if (setting.objectToReference && setting.objectToReference.TryGetComponent(out Lemming refLem))
+                        refVel = refLem.Velocity;
                     velocity -= refVel;
                 }
 
@@ -1348,18 +1359,18 @@ namespace Lemmings
         /// <returns>Float representing movement of the throuple.</returns>
         private float ThroupleMovementFloat(LemmingRelationSetting setting = null)
         {
-            if (setting?.relativeToMembers == true && Members.Count == 3)
+            if (setting?.relativeToMembers == true && References.Count == 3)
             {
                 Vector3 center = ThrouplePosition(setting);
                 float sum = 0f;
                 int count = 0;
 
-                foreach (var m in Members)
+                foreach (var reference in References)
                 {
-                    var lemming = m.GetComponent<Lemming>();
+                    var lemming = reference.Lemming;
                     if (lemming == null) continue;
 
-                    Vector3 toCenter = (center - m.transform.position).normalized;
+                    Vector3 toCenter = !reference.SourceTransform ? Vector3.zero : (center - reference.SourceTransform.position).normalized;
                     float projection = Vector3.Dot(lemming.Velocity, toCenter);
 
                     sum += projection;
@@ -1417,12 +1428,11 @@ namespace Lemmings
         /// <returns>Signed angle in degrees between forward and reference (0 = aligned, ±180 = fully opposed).</returns>
         private float ThroupleRotationAroundAxis(LemmingRelationSetting setting = null)
         {
-            if (Members.Count < 3 || Members.Any(m => m == null))
-                return 0f;
-
-            Vector3 a = Members[0].transform.position;
-            Vector3 b = Members[1].transform.position;
-            Vector3 c = Members[2].transform.position;
+            if (References.Count < 3 || !References[0].SourceTransform || !References[1].SourceTransform || !References[2].SourceTransform) return 0f;
+            
+            Vector3 a = References[0].SourceTransform.position; 
+            Vector3 b = References[1].SourceTransform.position; 
+            Vector3 c = References[2].SourceTransform.position;
 
             // Define forward and right vectors from axisSelectionThrouple
             Vector3 forward;
@@ -1484,19 +1494,35 @@ namespace Lemmings
         /// <returns>A Vector3 representing the bounding box size or max radius.</returns>
         private Vector3 ThroupleSize(LemmingRelationSetting setting = null)
         {
-            if (Members.Count < 3 || Members.Any(m => m == null))
-                return Vector3.zero;
+            if (References.Count < 3 || !References[0].SourceTransform || !References[1].SourceTransform || !References[2].SourceTransform) return Vector3.zero;
+            
+            Vector3 a = References[0].SourceTransform.position; 
+            Vector3 b = References[1].SourceTransform.position; 
+            Vector3 c = References[2].SourceTransform.position;
 
             if (setting?.sizeMethod == SizeMethod.RadiusFromCenter)
             {
-                Vector3 center = (Members[0].transform.position + Members[1].transform.position + Members[2].transform.position) / 3f;
-                float maxDist = Members.Max(m => Vector3.Distance(center, m.transform.position));
+                Vector3 center = (a + b + c) / 3f;
+
+                float maxDist = 0f;
+
+                for (int i = 0; i < References.Count; i++)
+                {
+                    var t = References[i].SourceTransform;
+                    
+                    if (!t) continue;
+                    
+                    float d = Vector3.Distance(center, t.position);
+                    
+                    if (d > maxDist) maxDist = d;
+                }
+                
                 return new Vector3(maxDist, maxDist, maxDist);
             }
 
-            Bounds bounds = new Bounds(Members[0].transform.position, Vector3.zero);
-            bounds.Encapsulate(Members[1].transform.position);
-            bounds.Encapsulate(Members[2].transform.position);
+            Bounds bounds = new Bounds(a, Vector3.zero);
+            bounds.Encapsulate(b);
+            bounds.Encapsulate(c);
 
             return bounds.size;
         }
@@ -1570,18 +1596,18 @@ namespace Lemmings
         /// <returns>The average Vector3 position of all members</returns>
         private Vector3 GroupPosition(LemmingRelationSetting setting = null)
         {
-            if (Members == null || Members.Count == 0)
-                return Vector3.zero;
-
-            Vector3 sum = Vector3.zero;
+            if (References == null || References.Count == 0) return Vector3.zero;
+            
+            Vector3 sum = Vector3.zero; 
             int count = 0;
-
-            foreach (var member in Members)
-            {
-                if (member == null) continue;
-                sum += member.transform.position;
-                count++;
-            }
+            
+            for (int i = 0; i < References.Count; i++)
+                {
+                    var t = References[i].SourceTransform;
+                    if (!t) continue;
+                    sum += t.position;
+                    count++;
+                }
 
             return count > 0 ? sum / count : Vector3.zero;
         }
@@ -1598,16 +1624,16 @@ namespace Lemmings
         /// <returns>Float representing axis value or magnitude of average</returns>
         private float GroupPositionFloat(LemmingRelationSetting setting = null)
         {
-            if (Members == null || Members.Count == 0)
-                return 0f;
-
-            Vector3 sum = Vector3.zero;
+            if (References == null || References.Count == 0) return 0f;
+            
+            Vector3 sum = Vector3.zero; 
             int count = 0;
-
-            foreach (var member in Members)
+            
+            for (int i = 0; i < References.Count; i++)
             {
-                if (member == null) continue;
-                sum += member.transform.position;
+                var t = References[i].SourceTransform;
+                if (!t) continue;
+                sum += t.position;
                 count++;
             }
 
@@ -1642,22 +1668,17 @@ namespace Lemmings
         /// <returns>A Quaternion facing the direction of group motion or identity if no movement is detected.</returns>
         private Quaternion GroupRotation(LemmingRelationSetting setting = null)
         {
-            if (Members == null || Members.Count == 0)
-                return Quaternion.identity;
+            if (References == null || References.Count == 0) return Quaternion.identity;
 
             Vector3 totalVelocity = Vector3.zero;
             int count = 0;
 
-            foreach (var m in Members)
+            foreach (var reference in References)
             {
-                if (m == null) continue;
-
-                var lemming = m.GetComponent<Lemming>();
-                if (lemming != null)
-                {
-                    totalVelocity += lemming.Velocity;
-                    count++;
-                }
+                var l = reference.Lemming;
+                if (!l) continue;
+                totalVelocity += l.Velocity;
+                count++;
             }
 
             if (count == 0) return Quaternion.identity;
@@ -1701,16 +1722,22 @@ namespace Lemmings
         /// <returns>Float density value.</returns>
         private float GroupDensity(LemmingRelationSetting setting = null)
         {
-            if (Members == null || Members.Count == 0)
-                return 0f;
+            if (References == null || References.Count == 0) return 0f;
 
             Vector3 center = GroupPosition(setting);
-            float total = Members.Sum(m => m != null ? Vector3.Distance(center, m.transform.position) : 0f);
-
+            float total = 0f; int count = 0;
+            for (int i = 0; i < References.Count; i++)
+            {
+                var t = References[i].SourceTransform;
+                if (!t) continue;
+                total += Vector3.Distance(center, t.position);
+                count++;
+            }
+            
             float result = (setting?.densityMethod ?? DensityMethod.AverageFromCenter) switch
             {
                 DensityMethod.TotalFromCenter => total,
-                DensityMethod.AverageFromCenter => total / Members.Count,
+                DensityMethod.AverageFromCenter => count > 0 ? total / count : 0f,
                 _ => total
             };
 
@@ -1736,32 +1763,31 @@ namespace Lemmings
         /// <returns>Size as a Vector3.</returns>
         private Vector3 GroupSize(LemmingRelationSetting setting = null)
         {
-            if (Members == null || Members.Count == 0)
-                return Vector3.zero;
+            if (References == null || References.Count == 0) return Vector3.zero;
 
             if (setting?.sizeMethod == SizeMethod.RadiusFromCenter)
             {
                 Vector3 center = GroupPosition(setting);
-                float maxDist = Members.Max(m => m != null ? Vector3.Distance(center, m.transform.position) : 0f);
+                float maxDist = 0f;
+                for (int i = 0; i < References.Count; i++)
+                {
+                    var t = References[i].SourceTransform;
+                    if (!t) continue;
+                    float d = Vector3.Distance(center, t.position);
+                    if (d > maxDist) maxDist = d;
+                }
+
                 return new Vector3(maxDist, maxDist, maxDist);
             }
 
             Bounds bounds = new Bounds();
             bool initialized = false;
-
-            foreach (var m in Members)
+            for (int i = 0; i < References.Count; i++)
             {
-                if (m == null) continue;
-
-                if (!initialized)
-                {
-                    bounds = new Bounds(m.transform.position, Vector3.zero);
-                    initialized = true;
-                }
-                else
-                {
-                    bounds.Encapsulate(m.transform.position);
-                }
+                var t = References[i].SourceTransform;
+                if (!t) continue;
+                if (!initialized) { bounds = new Bounds(t.position, Vector3.zero); initialized = true; }
+                else { bounds.Encapsulate(t.position); }
             }
 
             return bounds.size;
@@ -1806,24 +1832,25 @@ namespace Lemmings
         /// <returns>Vector3 representing group movement.</returns>
         private Vector3 GroupMovement(LemmingRelationSetting setting = null)
         {
-            if (Members == null || Members.Count == 0)
-                return Vector3.zero;
+            if (References == null || References.Count == 0) return Vector3.zero;
 
             Vector3 totalVelocity = Vector3.zero;
             int count = 0;
 
-            foreach (var m in Members)
+            foreach (var reference in References)
             {
-                if (m == null) continue;
+                if (reference.Source == null) continue;
 
-                var lemming = m.GetComponent<Lemming>();
+                var lemming = reference.Lemming;
                 if (lemming != null)
                 {
                     Vector3 velocity = lemming.Velocity;
 
                     if (setting?.relativeToObject == true && setting.objectToReference != null)
                     {
-                        var referenceVelocity = setting.objectToReference.GetComponent<Rigidbody>()?.linearVelocity ?? Vector3.zero;
+                        Vector3 referenceVelocity = Vector3.zero;
+                        if (setting.objectToReference && setting.objectToReference.TryGetComponent(out Rigidbody rb))
+                            referenceVelocity = rb.linearVelocity;
                         velocity -= referenceVelocity;
                     }
 
@@ -1856,18 +1883,18 @@ namespace Lemmings
         private float GroupMovementFloat(LemmingRelationSetting setting = null)
         {
             // If enabled, measure how much members are moving toward/away from group center
-            if (setting?.relativeToMembers == true && Members.Count >= 2)
+            if (setting?.relativeToMembers == true && References.Count >= 2)
             {
                 Vector3 center = GroupPosition(setting);
                 float sum = 0f;
                 int count = 0;
 
-                foreach (var m in Members)
+                foreach (var reference in References)
                 {
-                    var lemming = m?.GetComponent<Lemming>();
+                    var lemming = reference.Lemming;
                     if (lemming == null) continue;
 
-                    Vector3 toCenter = (center - m.transform.position).normalized;
+                    Vector3 toCenter = (center - reference.SourceTransform.position).normalized;
                     float projection = Vector3.Dot(lemming.Velocity, toCenter);
 
                     // Positive = moving toward center, Negative = moving away
@@ -1924,15 +1951,14 @@ namespace Lemmings
         /// <returns>Signed angle in degrees (float) based on group motion and selected axis context.</returns>
         private float GroupRotationAroundAxis(LemmingRelationSetting setting = null)
         {
-            if (Members == null || Members.Count == 0)
-                return 0f;
+            if (References == null || References.Count == 0) return 0f;
 
             Vector3 totalVelocity = Vector3.zero;
             int count = 0;
 
-            foreach (var m in Members)
+            foreach (var reference in References)
             {
-                var lemming = m?.GetComponent<Lemming>();
+                var lemming = reference.Lemming;
                 if (lemming == null) continue;
 
                 totalVelocity += lemming.Velocity;
@@ -1952,7 +1978,7 @@ namespace Lemmings
             Vector3 axis = setting?.rotationAxis ?? Vector3.up;
 
             // Use AxisSelection to determine reference vector
-            Vector3 reference = setting?.axisSelection switch
+            Vector3 refer = setting?.axisSelection switch
             {
                 AxisSelection.Up => Vector3.up,
                 AxisSelection.Right => Vector3.right,
@@ -1964,7 +1990,7 @@ namespace Lemmings
                 _ => Vector3.right
             };
 
-            return Vector3.SignedAngle(reference, forward.normalized, axis);
+            return Vector3.SignedAngle(refer, forward.normalized, axis);
         }
         
         

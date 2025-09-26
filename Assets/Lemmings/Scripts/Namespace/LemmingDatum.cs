@@ -95,7 +95,7 @@ namespace Lemmings
                     stringValue = s;
                     break;
                 default:
-                    Debug.LogError($"Unsupported LemmingDatum type: {value.GetType()}");
+                    //Debug.LogError($"Unsupported LemmingDatum type: {value.GetType()}");
                     break;
             }
         }

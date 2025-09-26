@@ -7,9 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.PerformanceTesting", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.XR.Interaction.Toolkit.Samples.StarterAssets", "Unity.XR.Interaction.Toolkit.Samples.StarterAssets.csproj", "{03c1e2ac-42e0-0ae2-795e-a1b9a9d239b6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.XR.Interaction.Toolkit.Samples.Hands", "Unity.XR.Interaction.Toolkit.Samples.Hands.csproj", "{d52b86ad-a5bb-cda5-6c55-3796bb306962}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{57be9bc9-b6c4-1e24-5172-75fce085efc3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.XR.Interaction.Toolkit.Samples.Hands", "Unity.XR.Interaction.Toolkit.Samples.Hands.csproj", "{d52b86ad-a5bb-cda5-6c55-3796bb306962}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.Collections.CodeGen", "Unity.Collections.CodeGen.csproj", "{7784f7fb-fa7c-f854-d0b0-5d0e15a57f77}"
 EndProject
@@ -29,9 +29,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.PerformanceTesting", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.XR.Interaction.Toolkit.Samples.StarterAssets", "Unity.XR.Interaction.Toolkit.Samples.StarterAssets.Player.csproj", "{f75ab583-7252-e681-d7fa-f8b43e086ead}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.XR.Interaction.Toolkit.Samples.Hands", "Unity.XR.Interaction.Toolkit.Samples.Hands.Player.csproj", "{17f25a46-6af8-ee3a-7239-7b6cee63b8b6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.Player.csproj", "{c208dc4a-0b55-155c-a194-77dca3895346}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.XR.Interaction.Toolkit.Samples.Hands", "Unity.XR.Interaction.Toolkit.Samples.Hands.Player.csproj", "{17f25a46-6af8-ee3a-7239-7b6cee63b8b6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.XR.Hands.Samples.VisualizerSample", "Unity.XR.Hands.Samples.VisualizerSample.Player.csproj", "{ba057437-e0ee-0306-1677-c8c1e6d6bbc2}"
 EndProject
@@ -56,10 +56,10 @@ Global
 		{81a4bde0-c068-44a1-6b85-53f67336fe8e}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03c1e2ac-42e0-0ae2-795e-a1b9a9d239b6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{03c1e2ac-42e0-0ae2-795e-a1b9a9d239b6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{d52b86ad-a5bb-cda5-6c55-3796bb306962}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{d52b86ad-a5bb-cda5-6c55-3796bb306962}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57be9bc9-b6c4-1e24-5172-75fce085efc3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{57be9bc9-b6c4-1e24-5172-75fce085efc3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{d52b86ad-a5bb-cda5-6c55-3796bb306962}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{d52b86ad-a5bb-cda5-6c55-3796bb306962}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7784f7fb-fa7c-f854-d0b0-5d0e15a57f77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7784f7fb-fa7c-f854-d0b0-5d0e15a57f77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{bf3fcf0e-650e-700e-a7cb-78e6877a7354}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -78,10 +78,10 @@ Global
 		{b40c4d8a-4178-ab29-33a7-73298e567900}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{f75ab583-7252-e681-d7fa-f8b43e086ead}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{f75ab583-7252-e681-d7fa-f8b43e086ead}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{17f25a46-6af8-ee3a-7239-7b6cee63b8b6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{17f25a46-6af8-ee3a-7239-7b6cee63b8b6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{c208dc4a-0b55-155c-a194-77dca3895346}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{c208dc4a-0b55-155c-a194-77dca3895346}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17f25a46-6af8-ee3a-7239-7b6cee63b8b6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17f25a46-6af8-ee3a-7239-7b6cee63b8b6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ba057437-e0ee-0306-1677-c8c1e6d6bbc2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ba057437-e0ee-0306-1677-c8c1e6d6bbc2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{be4ca175-b592-b41a-f40c-c9115b8f21b9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
