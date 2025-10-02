@@ -51,8 +51,10 @@
     <Compile Include="Assets\Lemmings\Scripts\Classes\LemmingProxySimpleViz.cs" />
     <Compile Include="Assets\3rdParty\RtMidi\Monitor.cs" />
     <Compile Include="Assets\Lemmings\Scripts\ScriptableObjects\LemmingHerdSnapshot.cs" />
+    <Compile Include="Assets\Lemmings\Scripts\MidiInteractions\MidiSettingSender.cs" />
     <Compile Include="Assets\Lemmings\Scripts\Classes\LemmingShepherd.cs" />
     <Compile Include="Assets\Lemmings\Scripts\Namespace\LemmingDatum.cs" />
+    <Compile Include="Assets\Lemmings\Scripts\MidiInteractions\InstrumentSettings.cs" />
     <Compile Include="Assets\Lemmings\Scripts\Visualizer\LemmingCmdPrimitives.cs" />
     <Compile Include="Assets\Lemmings\Scripts\InputSystem\LemmingDeviceInitializer.cs" />
     <Compile Include="Assets\Lemmings\Scripts\UI\LemmingUIRelationshipDataRow.cs" />
@@ -66,16 +68,20 @@
     <Compile Include="Assets\Lemmings\Scripts\InputSystem\LemmingLayoutGenerator.cs" />
     <Compile Include="Assets\Lemmings\Scripts\Classes\LemmingSecondaryMetric.cs" />
     <Compile Include="Assets\Lemmings\Scripts\Namespace\LemmingTrackingStatus.cs" />
+    <Compile Include="Assets\Lemmings\Scripts\MidiInteractions\ReasonMidiInterface.cs" />
     <Compile Include="Assets\Lemmings\Scripts\Classes\Lemming.cs" />
     <Compile Include="Assets\Lemmings\Scripts\UI\LemmingUIRemappingMetricOption.cs" />
     <Compile Include="Assets\Lemmings\Scripts\Namespace\LemmingConverterStructs.cs" />
     <Compile Include="Assets\3rdParty\RtMidi\MidiOutTest.cs" />
+    <Compile Include="Assets\Lemmings\Scripts\MidiInteractions\MidiDemo2.cs" />
     <Compile Include="Assets\Lemmings\Scripts\UI\LemmingUIVisibilityController.cs" />
     <Compile Include="Assets\Lemmings\Scripts\Namespace\LemmingInterfaces.cs" />
     <Compile Include="Assets\3rdParty\RtMidi\MidiInTest.cs" />
+    <Compile Include="Assets\Lemmings\Scripts\MidiInteractions\MidiDemo.cs" />
     <Compile Include="Assets\Lemmings\Scripts\ScriptableObjects\LemmingRelationship.cs" />
     <Compile Include="Assets\Lemmings\Scripts\Classes\MirrorPosition.cs" />
     <Compile Include="Assets\Lemmings\Scripts\Namespace\LemmingRelationshipStruct.cs" />
+    <Compile Include="Assets\Lemmings\Scripts\Instrument\DemoInstrumentDriver.cs" />
     <Compile Include="Assets\Lemmings\Scripts\Visualizer\LemmingCmdHelpers.cs" />
     <Compile Include="Assets\CompositionLayers\UserSettings\Resources\CustomRenderPassFeature.cs" />
     <Compile Include="Assets\Lemmings\Scripts\InputSystem\LemmingDevice.cs" />
@@ -86,6 +92,7 @@
     <Compile Include="Assets\Lemmings\Scripts\Visualizer\LemmingVizTarget.cs" />
     <Compile Include="Assets\Lemmings\Scripts\UI\LemmingUIUtilities.cs" />
     <Compile Include="Assets\Lemmings\Scripts\MidiInteractions\ReasonMidiMapping.cs" />
+    <Compile Include="Assets\Lemmings\Scripts\MidiInteractions\reason_cc_via_rt_midi_c_unity_sample.cs" />
     <Compile Include="Assets\Lemmings\Scripts\Namespace\LemmingUtilities.cs" />
     <Compile Include="Assets\Resources\_Generated\LemmingName_XR_Herd.cs" />
     <Reference Include="UnityEngine">
@@ -799,14 +806,14 @@
     <Reference Include="Unity.RenderPipelines.Universal.2D.Runtime">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.2D.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="RtMidi.Runtime">
+      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\RtMidi.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.InputSystem.ForUI">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.InputSystem.ForUI.dll</HintPath>
     </Reference>
     <Reference Include="Meta.XR.EnvironmentDepth">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Meta.XR.EnvironmentDepth.dll</HintPath>
-    </Reference>
-    <Reference Include="RtMidi.Runtime">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\RtMidi.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.OpenXR.Features.OculusQuestSupport">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.XR.OpenXR.Features.OculusQuestSupport.dll</HintPath>

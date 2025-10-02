@@ -53,7 +53,7 @@ namespace ReasonMidi
         /// // Suppose you have an RtMidi wrapper with SendShort/SendSysex delegates
         /// var output = new RtMidiOutputAdapter((status,d1,d2) => Native.SendShort(status,d1,d2), sysex => Native.SendSysex(sysex));
         /// sender.Initialize(output, 1); // Channel 1
-        /// sender.SendModWheel01(0.5f);
+        /// sender.SendMod(0.5f);
         /// </code>
         /// </example>
         public void Initialize(IMidiOutput output, int? midiChannel = null)
@@ -127,9 +127,9 @@ namespace ReasonMidi
         /// <example>
         /// <code>
         /// // Smooth upward bend from center
-        /// sender.SendPitchBend01(0.5f); // center
-        /// sender.SendPitchBend01(0.75f);
-        /// sender.SendPitchBend01(1.0f); // full up
+        /// sender.SendPitchBend(0.5f); // center
+        /// sender.SendPitchBend(0.75f);
+        /// sender.SendPitchBend(1.0f); // full up
         /// </code>
         /// </example>
         public void SendPitchBend01(float v01)

@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abec2ffb3aac45b40a25e91178a726f2, type: 3}
+  m_Name: New Midi Setting
+  m_EditorClassIdentifier: 
+  instrument: 0
+  Ab: 0
+  A: 1
+  Bb: 0
+  B: 1
+  C: 1
+  Db: 0
+  D: 1
+  Eb: 0
+  E: 1
+  F: 1
+  Gb: 0
+  G: 1
+  octaveMin: 2
+  octaveMax: 5
+  velocityMin: 0
+  velocityMax: 127
+  tremoloMin: 0.05
+  tremoloMax: 2
+  r_0: 0
+  r_1: 0
+  r_1_2: 1
+  r_1_3: 1
+  r_2_3: 1
+  r_3_4: 0
+  r_4_5: 0
+  r_5_6: 1
+  r_2_5: 0
+  r_3_5: 0
+  r_4_7: 0
+  r_5_7: 0
+  r_8_9: 0
+  r_9_10: 0
+  r_10_11: 0
+  r_11_12: 0
+  r_golden: 0
+  tremoloRatios:
+  - 0.33333334
+  - 0.5
+  - 0.6666667
+  - 0.8333333
+  fixedNoteMin: 0
+  fixedNoteMax: 2
+  modWheelMin: 0
+  modWheelMax: 127
+  modWheelccChannel: 1
+  pitchBendMin: 0
+  pitchBendMax: 8000
+  pitchBendccChannel: 39
+  variable1Name: 
+  variable1Min: 0
+  variable1Max: 127
+  variable1ccChannel: 13
+  variable2Name: 
+  variable2Min: 0
+  variable2Max: 127
+  variable2ccChannel: 107
+  portamentoOn: 1
+  portamentoLevelMin: 0
+  portamentoLevelMax: 0
+  portamentoccChannel: 5

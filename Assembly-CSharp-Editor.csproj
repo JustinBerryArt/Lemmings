@@ -46,6 +46,7 @@
     <Analyzer Include="D:\SOFTWARE\Unity Hub\6000.1.3f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Lemmings\Scripts\Editor\MidiSettingEditor.cs" />
     <Compile Include="Assets\Lemmings\Scripts\Editor\LemmingEditorUtilities.cs" />
     <Compile Include="Assets\3rdParty\TutorialInfo\Scripts\Editor\ReadmeEditor.cs" />
     <Reference Include="UnityEngine">
@@ -1083,6 +1084,9 @@
     <Reference Include="Meta.XR.BuildingBlocks.DepthAPI">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Meta.XR.BuildingBlocks.DepthAPI.dll</HintPath>
     </Reference>
+    <Reference Include="RtMidi.Runtime">
+      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\RtMidi.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.InputSystem.ForUI">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.InputSystem.ForUI.dll</HintPath>
     </Reference>
@@ -1100,9 +1104,6 @@
     </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="RtMidi.Runtime">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\RtMidi.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.OpenXR.Features.OculusQuestSupport">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.XR.OpenXR.Features.OculusQuestSupport.dll</HintPath>
