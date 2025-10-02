@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 1906461165}
   - component: {fileID: 1906461164}
   - component: {fileID: 1906461167}
+  - component: {fileID: 1906461168}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -213,7 +214,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1906461163}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc362eceb1da5374ca6b0b2d692fd384, type: 3}
   m_Name: 
@@ -235,6 +236,47 @@ MonoBehaviour:
   tremoloNote2: 0.559
   tremoloNoteVelocity2: 0.75
   playTremolo2: 0
+  pitchBend: 0
+  setPitchBend: 0
+  modWheel: 0
+  setModWheel: 0
+  portamento: 0
+  setPortamento: 0
+  var1: 0
+  setVar1: 0
+  var2: 0
+  setVar2: 0
+--- !u!114 &1906461168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906461163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a00158a3db533274692ebf23ec348fa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sender: {fileID: 1906461165}
+  note: 0
+  duration: 0
+  velocity: 0
+  playDuration: 0
+  playOn: 0
+  playOff: 0
+  tremoloDuration: 0
+  tremoloNote: 0
+  playTremolo: 0
+  tremoloDuration2: 0
+  tremoloNote2: 0
+  playTremolo2: 0
+  tremoloDuration3: 0
+  tremoloNote3: 0
+  playTremolo3: 0
+  tremoloDuration4: 0
+  tremoloNote4: 0
+  playTremolo4: 0
   pitchBend: 0
   setPitchBend: 0
   modWheel: 0
