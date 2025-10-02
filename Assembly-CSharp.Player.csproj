@@ -53,6 +53,7 @@
     <Compile Include="Assets\Lemmings\Scripts\ScriptableObjects\LemmingHerdSnapshot.cs" />
     <Compile Include="Assets\Lemmings\Scripts\MidiInteractions\MidiSettingSender.cs" />
     <Compile Include="Assets\Lemmings\Scripts\Classes\LemmingShepherd.cs" />
+    <Compile Include="Assets\Lemmings\Scripts\MidiInteractions\MidiDemo3.cs" />
     <Compile Include="Assets\Lemmings\Scripts\Namespace\LemmingDatum.cs" />
     <Compile Include="Assets\Lemmings\Scripts\MidiInteractions\InstrumentSettings.cs" />
     <Compile Include="Assets\Lemmings\Scripts\Visualizer\LemmingCmdPrimitives.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Assets\Lemmings\Scripts\UI\LemmingUIRemappingMetricOption.cs" />
     <Compile Include="Assets\Lemmings\Scripts\Namespace\LemmingConverterStructs.cs" />
     <Compile Include="Assets\3rdParty\RtMidi\MidiOutTest.cs" />
+    <Compile Include="Assets\Lemmings\Scripts\Instrument\QuadTremDriver.cs" />
     <Compile Include="Assets\Lemmings\Scripts\MidiInteractions\MidiDemo2.cs" />
     <Compile Include="Assets\Lemmings\Scripts\UI\LemmingUIVisibilityController.cs" />
     <Compile Include="Assets\Lemmings\Scripts\Namespace\LemmingInterfaces.cs" />
@@ -81,8 +83,8 @@
     <Compile Include="Assets\Lemmings\Scripts\ScriptableObjects\LemmingRelationship.cs" />
     <Compile Include="Assets\Lemmings\Scripts\Classes\MirrorPosition.cs" />
     <Compile Include="Assets\Lemmings\Scripts\Namespace\LemmingRelationshipStruct.cs" />
-    <Compile Include="Assets\Lemmings\Scripts\Instrument\DemoInstrumentDriver.cs" />
     <Compile Include="Assets\Lemmings\Scripts\Visualizer\LemmingCmdHelpers.cs" />
+    <Compile Include="Assets\Lemmings\Scripts\Instrument\DuoTremDriver.cs" />
     <Compile Include="Assets\CompositionLayers\UserSettings\Resources\CustomRenderPassFeature.cs" />
     <Compile Include="Assets\Lemmings\Scripts\InputSystem\LemmingDevice.cs" />
     <Compile Include="Assets\Lemmings\Scripts\Classes\LemmingProxyRuntimeVisualizer.cs" />

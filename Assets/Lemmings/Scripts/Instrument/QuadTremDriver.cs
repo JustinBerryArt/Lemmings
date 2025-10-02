@@ -5,7 +5,8 @@ using ReasonMidi;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class DemoInstrumentDriver : MonoBehaviour
+[RequireComponent(typeof(MidiSettingSender))]
+public class QuadTremDriver : MonoBehaviour
 {
     [Header("Primary tremolo Note")]
     public MidiSettingSender sender;
@@ -14,28 +15,41 @@ public class DemoInstrumentDriver : MonoBehaviour
     [Header("Tremolo 1")] 
     public LemmingRelationship TremoloPeriod1;
     private float _tremoloPeriod;
-    public LemmingRelationship TremoloNoteDuration1;
-    private float _tremoloNoteDuration;  
     public LemmingRelationship TremoloNote1;
     private float _tremoloNote;
-    public LemmingRelationship TremoloVelocity1;
-    private float _tremoloNoteVelocity;
-    public bool playTremolo => _tremoloPeriod > 0 && _tremoloNoteDuration > 0 && _tremoloNoteVelocity > 0;
+
+    private bool _playTremolo1;
     private float _tremoloTimer;
 
-    
-    [Header("Tremolo 2 (follows 1 by ratio)")]
+    [Header("Tremolo 2")] 
     public LemmingRelationship TremoloPeriod2;
     private float _tremoloPeriod2;
-    public LemmingRelationship TremoloNoteDuration2;
-    private float _tremoloNoteDuration2;  
     public LemmingRelationship TremoloNote2;
     private float _tremoloNote2;
-    public LemmingRelationship TremoloVelocity2;
-    private float _tremoloNoteVelocity2;
-    public bool playTremolo2 => _tremoloPeriod2 > 0 && _tremoloNoteDuration2 > 0 && _tremoloNoteVelocity2 > 0;
-    private float _tremoloTimer2;
+    
 
+    private bool _playTremolo2;
+    private bool _tremolo2Ready;
+    
+    
+    [Header("Tremolo 3")] 
+    public LemmingRelationship TremoloPeriod3;
+    private float _tremoloPeriod3;
+    public LemmingRelationship TremoloNote3;
+    private float _tremoloNote3;
+
+    private bool _playTremolo3;
+    private bool _tremolo3Ready;
+    
+    [Header("Tremolo 4")] 
+    public LemmingRelationship TremoloPeriod4;
+    private float _tremoloPeriod4;
+    public LemmingRelationship TremoloNote4;
+    private float _tremoloNote4;
+
+    private bool _playTremolo4;
+    private bool _tremolo4Ready;
+    
     [Header("Pitch Bend")] 
     public LemmingRelationship PitchBend;
     public bool setPitchBend;
@@ -50,11 +64,10 @@ public class DemoInstrumentDriver : MonoBehaviour
     /// <summary>
     /// Grab the settings from the sender
     /// </summary>
-    void Awake()
-    {
-        if (!sender) { Debug.LogError("GestureDriver: sender not assigned."); return; }
+    void Awake() {
+        if (!sender) { Debug.LogError("QuadTremDriver: sender not assigned."); enabled = false; return; }
         _setting = sender.setting;
-        if (!_setting) Debug.LogError("GestureDriver: sender has no MidiSetting assigned.");
+        if (!_setting) { Debug.LogError("QuadTremDriver: sender has no MidiSetting assigned."); enabled = false; return; }
     }
     
     
@@ -73,17 +86,25 @@ public class DemoInstrumentDriver : MonoBehaviour
     void PullData() 
     {
         // Tremolo 1 update 
+        _playTremolo1 = TremoloPeriod1 && !TremoloPeriod1.CachedInfo.Under;
         if (TremoloPeriod1) _tremoloPeriod = TremoloPeriod1.CachedInfo.CurvedValue; 
-        if (TremoloNoteDuration1) _tremoloNoteDuration = TremoloNoteDuration1.CachedInfo.CurvedValue;
         if (TremoloNote1) _tremoloNote = TremoloNote1.CachedInfo.CurvedValue;
-        if (TremoloVelocity1) _tremoloNoteVelocity = TremoloVelocity1.CachedInfo.CurvedValue;
-
+        
         // Tremolo 2 update 
+        _playTremolo2 = TremoloPeriod2 && !TremoloPeriod2.CachedInfo.Under;
         if (TremoloPeriod2) _tremoloPeriod2 = TremoloPeriod2.CachedInfo.CurvedValue; 
-        if (TremoloNoteDuration2) _tremoloNoteDuration2 = TremoloNoteDuration2.CachedInfo.CurvedValue;
         if (TremoloNote2) _tremoloNote2 = TremoloNote2.CachedInfo.CurvedValue;
-        if (TremoloVelocity2) _tremoloNoteVelocity2 = TremoloVelocity2.CachedInfo.CurvedValue;
 
+        // Tremolo 3 update 
+        _playTremolo3 = TremoloPeriod3 && !TremoloPeriod3.CachedInfo.Under;
+        if (TremoloPeriod3) _tremoloPeriod3 = TremoloPeriod3.CachedInfo.CurvedValue; 
+        if (TremoloNote3) _tremoloNote3 = TremoloNote3.CachedInfo.CurvedValue;
+        
+        // Tremolo 4 update 
+        _playTremolo4 = TremoloPeriod4 && !TremoloPeriod4.CachedInfo.Under;
+        if (TremoloPeriod4) _tremoloPeriod4 = TremoloPeriod4.CachedInfo.CurvedValue; 
+        if (TremoloNote4) _tremoloNote4 = TremoloNote4.CachedInfo.CurvedValue;
+        
         // Modifiers update 
         if (PitchBend) _pitchBend = PitchBend.CachedInfo.CurvedValue; 
         if (ModWheel) _modWheel = ModWheel.CachedInfo.CurvedValue;
@@ -100,11 +121,11 @@ public class DemoInstrumentDriver : MonoBehaviour
     /// This sets the ratio for the second tremolo based on the options selected in the settings
     /// </summary>
     /// <returns>The timing ratio for tremolo 2</returns>
-    public float SelectRatio()
+    public float SelectRatio(float timing)
     {
         var arr = _setting?.tremoloRatios;
         if (arr == null || arr.Length == 0) return 2f/3f; // fallback
-        int idx = Mathf.RoundToInt(Mathf.Clamp01(_tremoloPeriod2) * (arr.Length - 1));
+        int idx = Mathf.RoundToInt(Mathf.Clamp01(timing) * (arr.Length - 1));
         return Mathf.Clamp01(arr[idx]);
     }
     
@@ -117,33 +138,63 @@ public class DemoInstrumentDriver : MonoBehaviour
     public void PlayTremolo()
     {
         float periodA = Period1(_tremoloPeriod);
-        float periodB = periodA * SelectRatio();
+        float periodB = periodA * SelectRatio(_tremoloPeriod2);
+        float periodC = periodA * SelectRatio(_tremoloPeriod3);
+        float periodD = periodA * SelectRatio(_tremoloPeriod4);
         periodA = Mathf.Max(1e-4f, periodA);
         periodB = Mathf.Max(1e-4f, periodB);
+        periodC = Mathf.Max(1e-4f, periodC);
+        periodD = Mathf.Max(1e-4f, periodD);
 
         // --- Trem 1 ---
-        if (playTremolo)
+        if (_playTremolo1)
         {
-            if (_tremoloTimer <= 0f && _tremoloNoteDuration >= 0f)
-                sender.PlayFixedNote01(_tremoloNote, _tremoloNoteVelocity, _tremoloNoteDuration);
+            
 
             _tremoloTimer += Time.deltaTime;
-            if (_tremoloTimer >= periodA) _tremoloTimer = 0f;
+            if (_tremoloTimer >= periodA)
+            {
+                sender.PlayFixedNote01(_tremoloNote, .75f, .15f);
+                
+                _tremolo2Ready = true;
+                _tremolo3Ready = true;
+                _tremolo4Ready = true;
+                
+                _tremoloTimer = 0f;
+            }
         }
         else _tremoloTimer = 0f;
 
         // --- Trem 2 (derived) ---
-        if (playTremolo2)
+        if (_playTremolo2)
         {
-            _tremoloTimer2 += Time.deltaTime;
-            if (_tremoloTimer2 >= periodB)
+            if (_tremoloTimer >= periodB && _tremolo2Ready)
             {
-                _tremoloTimer2 -= periodB;
-                if (_tremoloNoteDuration2 >= 0f)
-                    sender.PlayFixedNote01(_tremoloNote2, _tremoloNoteVelocity2, _tremoloNoteDuration2);
+                _tremolo2Ready = false;
+                sender.PlayFixedNote01(_tremoloNote2, .75f, .15f);
             }
         }
-        else _tremoloTimer2 = 0f;
+        
+        // --- Trem 2 (derived) ---
+        if (_playTremolo3)
+        {
+            if (_tremoloTimer >= periodC && _tremolo3Ready)
+            {
+                _tremolo3Ready = false;
+                sender.PlayFixedNote01(_tremoloNote3, .75f, .15f);
+            }
+        }
+        
+        // --- Trem 2 (derived) ---
+        if (_playTremolo4)
+        {
+            if (_tremoloTimer >= periodD && _tremolo4Ready)
+            {
+                _tremolo4Ready = false;
+                sender.PlayFixedNote01(_tremoloNote4, .75f, .15f);
+            }
+        }
+
     }
     
     /// <summary>

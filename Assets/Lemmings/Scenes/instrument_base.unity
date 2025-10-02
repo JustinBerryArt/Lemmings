@@ -225,15 +225,15 @@ MonoBehaviour:
   playDuration: 0
   playOn: 0
   playOff: 0
-  tremoloDuration: 0
-  tremoloNoteDuration: 0
-  tremoloNote: 0
-  tremoloNoteVelocity: 0
+  tremoloDuration: 0.527
+  tremoloNoteDuration: 0.1
+  tremoloNote: 0.527
+  tremoloNoteVelocity: 0.75
   playTremolo: 0
-  tremoloDuration2: 0
-  tremoloNoteDuration2: 0
-  tremoloNote2: 0
-  tremoloNoteVelocity2: 0
+  tremoloDuration2: 0.144
+  tremoloNoteDuration2: 0.1
+  tremoloNote2: 0.559
+  tremoloNoteVelocity2: 0.75
   playTremolo2: 0
   pitchBend: 0
   setPitchBend: 0
