@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d27428365df05fa4d942320c966a0295, type: 3}
-  m_Name: PitchControl
+  m_Name: BeBodBop_Note1
   m_EditorClassIdentifier: 
-  ID: PitchControl
-  description: New relationship created via menu
+  ID: NoteSelection1
+  description: This controls the way that a particular beats note is selected from
+    the scale defined in settings.
   useInputSystem: 0
-  Herd: {fileID: 0}
-  familyType: 0
+  Herd: {fileID: 11400000, guid: 27130911a393ad540b04c8739b117ad3, type: 2}
+  familyType: 1
   singleMetric: 0
   coupleMetric: 0
   throupleMetric: 0
@@ -69,6 +70,17 @@ MonoBehaviour:
     referenceVector: {x: 0, y: 0, z: 0}
     rotationAxis: {x: 0, y: 0, z: 0}
     threshold: 0
-  selectedReferences: []
+  selectedReferences:
+  - source: {fileID: 0}
+    scenePath: LemmingShepherd/BasicRig/Camera Offset/Right Hand Tracking/R_Wrist/R_RingMetacarpal/R_RingProximal/R_RingIntermediate/R_RingDistal/R_RingTip
+    objectName: R_RingTip
+    name: R_RingTip
+    confidence: 1
+  - source: {fileID: 0}
+    scenePath: LemmingShepherd/BasicRig/Camera Offset/Right Hand Tracking/R_Wrist/R_RingMetacarpal/R_RingProximal/R_RingIntermediate/R_RingDistal/R_RingTip
+    objectName: R_RingTip
+    name: R_RingTip
+    confidence: 1
   selectedNames:
-  - 
+  - R_RingTip
+  - R_RingTip

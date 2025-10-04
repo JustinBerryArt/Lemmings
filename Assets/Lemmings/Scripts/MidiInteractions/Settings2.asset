@@ -10,36 +10,36 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: abec2ffb3aac45b40a25e91178a726f2, type: 3}
-  m_Name: New Midi Setting
+  m_Name: Settings2
   m_EditorClassIdentifier: 
   instrument: 0
-  Ab: 0
+  Ab: 1
   A: 1
-  Bb: 0
+  Bb: 1
   B: 1
   C: 1
-  Db: 0
+  Db: 1
   D: 1
-  Eb: 0
+  Eb: 1
   E: 1
   F: 1
-  Gb: 0
+  Gb: 1
   G: 1
-  octaveMin: 3
-  octaveMax: 7
+  octaveMin: 0
+  octaveMax: 8
   velocityMin: 0
   velocityMax: 127
-  tremoloMin: 0.35
-  tremoloMax: 4
+  tremoloMin: 1
+  tremoloMax: 1
   r_0: 1
   r_1: 1
-  r_1_2: 0
-  r_1_3: 0
-  r_1_4: 0
-  r_2_3: 0
-  r_3_4: 0
-  r_4_5: 0
-  r_5_6: 0
+  r_1_2: 1
+  r_1_3: 1
+  r_1_4: 1
+  r_2_3: 1
+  r_3_4: 1
+  r_4_5: 1
+  r_5_6: 1
   r_1_8: 1
   r_2_8: 1
   r_3_8: 1
@@ -47,24 +47,37 @@ MonoBehaviour:
   r_5_8: 1
   r_6_8: 1
   r_7_8: 1
-  r_2_5: 0
-  r_3_5: 0
-  r_4_7: 0
-  r_5_7: 0
-  r_8_9: 0
-  r_9_10: 0
-  r_10_11: 0
-  r_11_12: 0
-  r_golden: 0
+  r_2_5: 1
+  r_3_5: 1
+  r_4_7: 1
+  r_5_7: 1
+  r_8_9: 1
+  r_9_10: 1
+  r_10_11: 1
+  r_11_12: 1
+  r_golden: 1
   tremoloRatios:
   - 0
   - 0.125
   - 0.25
+  - 0.33333334
   - 0.375
+  - 0.4
   - 0.5
+  - 0.5714286
+  - 0.6
+  - 0.618034
   - 0.625
+  - 0.6666667
+  - 0.71428573
   - 0.75
+  - 0.8
+  - 0.8333333
   - 0.875
+  - 0.8888889
+  - 0.9
+  - 0.90909094
+  - 0.9166667
   - 1
   fixedNoteMin: 0
   fixedNoteMax: 2

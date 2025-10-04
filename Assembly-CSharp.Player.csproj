@@ -46,10 +46,12 @@
     <Analyzer Include="D:\SOFTWARE\Unity Hub\6000.1.3f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Lemmings\Scripts\Instrument\BeBodBopMachine.cs" />
     <Compile Include="Assets\Lemmings\Scripts\Visualizer\LemmingDebugRenderFeatureRG.cs" />
     <Compile Include="Assets\Lemmings\Scripts\UI\LemmingUIRemappingLemmingRow.cs" />
     <Compile Include="Assets\Lemmings\Scripts\Classes\LemmingProxySimpleViz.cs" />
     <Compile Include="Assets\3rdParty\RtMidi\Monitor.cs" />
+    <Compile Include="Assets\Lemmings\Scripts\MidiInteractions\MidiDemo4.cs" />
     <Compile Include="Assets\Lemmings\Scripts\ScriptableObjects\LemmingHerdSnapshot.cs" />
     <Compile Include="Assets\Lemmings\Scripts\MidiInteractions\MidiSettingSender.cs" />
     <Compile Include="Assets\Lemmings\Scripts\Classes\LemmingShepherd.cs" />
@@ -84,6 +86,7 @@
     <Compile Include="Assets\Lemmings\Scripts\Classes\MirrorPosition.cs" />
     <Compile Include="Assets\Lemmings\Scripts\Namespace\LemmingRelationshipStruct.cs" />
     <Compile Include="Assets\Lemmings\Scripts\Visualizer\LemmingCmdHelpers.cs" />
+    <Compile Include="Assets\Lemmings\Scripts\Instrument\BeBodBopSetting.cs" />
     <Compile Include="Assets\Lemmings\Scripts\Instrument\DuoTremDriver.cs" />
     <Compile Include="Assets\CompositionLayers\UserSettings\Resources\CustomRenderPassFeature.cs" />
     <Compile Include="Assets\Lemmings\Scripts\InputSystem\LemmingDevice.cs" />
@@ -95,6 +98,7 @@
     <Compile Include="Assets\Lemmings\Scripts\UI\LemmingUIUtilities.cs" />
     <Compile Include="Assets\Lemmings\Scripts\MidiInteractions\ReasonMidiMapping.cs" />
     <Compile Include="Assets\Lemmings\Scripts\MidiInteractions\reason_cc_via_rt_midi_c_unity_sample.cs" />
+    <Compile Include="Assets\Lemmings\Scripts\Instrument\BeBodBopSender.cs" />
     <Compile Include="Assets\Lemmings\Scripts\Namespace\LemmingUtilities.cs" />
     <Compile Include="Assets\Resources\_Generated\LemmingName_XR_Herd.cs" />
     <Reference Include="UnityEngine">

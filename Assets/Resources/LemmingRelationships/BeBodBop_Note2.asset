@@ -10,19 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d27428365df05fa4d942320c966a0295, type: 3}
-  m_Name: Select_XR
+  m_Name: BeBodBop_Note2
   m_EditorClassIdentifier: 
-  ID: Select_XR
-  description: New relationship created via menu
+  ID: NoteSelection2
+  description: This controls the way that a particular beats note is selected from
+    the scale defined in settings.
   useInputSystem: 0
   Herd: {fileID: 11400000, guid: 27130911a393ad540b04c8739b117ad3, type: 2}
   familyType: 1
   singleMetric: 0
-  coupleMetric: 3
+  coupleMetric: 0
   throupleMetric: 0
   groupMetric: 0
   min: 0
-  max: 2.5
+  max: 1
   curveType: 0
   customCurve:
     serializedVersion: 2
@@ -71,15 +72,15 @@ MonoBehaviour:
     threshold: 0
   selectedReferences:
   - source: {fileID: 0}
-    scenePath: LemmingShepherd/BasicRig/Camera Offset/Right Hand Tracking/R_Wrist/R_IndexMetacarpal/R_IndexProximal/R_IndexIntermediate/R_IndexDistal/R_IndexTip
-    objectName: R_IndexTip
-    name: R_IndexTip
+    scenePath: LemmingShepherd/BasicRig/Camera Offset/Right Hand Tracking/R_Wrist/R_RingMetacarpal/R_RingProximal/R_RingIntermediate/R_RingDistal/R_RingTip
+    objectName: R_RingTip
+    name: R_RingTip
     confidence: 1
   - source: {fileID: 0}
-    scenePath: LemmingShepherd/BasicRig/Camera Offset/Right Hand Tracking/R_Wrist/R_ThumbMetacarpal/R_ThumbProximal/R_ThumbDistal/R_ThumbTip
-    objectName: R_ThumbTip
-    name: R_ThumbTip
+    scenePath: LemmingShepherd/BasicRig/Camera Offset/Right Hand Tracking/R_Wrist/R_RingMetacarpal/R_RingProximal/R_RingIntermediate/R_RingDistal/R_RingTip
+    objectName: R_RingTip
+    name: R_RingTip
     confidence: 1
   selectedNames:
-  - R_IndexTip
-  - R_ThumbTip
+  - R_RingTip
+  - R_RingTip

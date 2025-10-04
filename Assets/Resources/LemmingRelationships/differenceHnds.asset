@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d27428365df05fa4d942320c966a0295, type: 3}
-  m_Name: VelocityControl
+  m_Name: differenceHnds
   m_EditorClassIdentifier: 
-  ID: VelocityControl
+  ID: twistR
   description: New relationship created via menu
   useInputSystem: 0
   Herd: {fileID: 0}
