@@ -19,11 +19,11 @@ MonoBehaviour:
   Herd: {fileID: 11400000, guid: 27130911a393ad540b04c8739b117ad3, type: 2}
   familyType: 1
   singleMetric: 0
-  coupleMetric: 0
+  coupleMetric: 2
   throupleMetric: 0
   groupMetric: 0
-  min: 0
-  max: 1
+  min: 2
+  max: 10
   curveType: 0
   customCurve:
     serializedVersion: 2
@@ -72,15 +72,15 @@ MonoBehaviour:
     threshold: 0
   selectedReferences:
   - source: {fileID: 0}
-    scenePath: LemmingShepherd/BasicRig/Camera Offset/Right Hand Tracking/R_Wrist/R_RingMetacarpal/R_RingProximal/R_RingIntermediate/R_RingDistal/R_RingTip
-    objectName: R_RingTip
-    name: R_RingTip
+    scenePath: LemmingShepherd/BasicRig/Camera Offset/Right Hand Tracking/R_Wrist/R_ThumbMetacarpal/R_ThumbProximal/R_ThumbDistal/R_ThumbTip
+    objectName: R_ThumbTip
+    name: R_ThumbTip
     confidence: 1
   - source: {fileID: 0}
-    scenePath: LemmingShepherd/BasicRig/Camera Offset/Right Hand Tracking/R_Wrist/R_RingMetacarpal/R_RingProximal/R_RingIntermediate/R_RingDistal/R_RingTip
-    objectName: R_RingTip
-    name: R_RingTip
+    scenePath: LemmingShepherd/BasicRig/Camera Offset/Right Hand Tracking/R_Wrist/R_IndexMetacarpal/R_IndexProximal/R_IndexIntermediate/R_IndexDistal/R_IndexTip
+    objectName: R_IndexTip
+    name: R_IndexTip
     confidence: 1
   selectedNames:
-  - R_RingTip
-  - R_RingTip
+  - R_ThumbTip
+  - R_IndexTip

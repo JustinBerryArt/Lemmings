@@ -15,14 +15,14 @@ MonoBehaviour:
   ID: twistR
   description: New relationship created via menu
   useInputSystem: 0
-  Herd: {fileID: 0}
-  familyType: 2
+  Herd: {fileID: 11400000, guid: 27130911a393ad540b04c8739b117ad3, type: 2}
+  familyType: 3
   singleMetric: 0
   coupleMetric: 0
   throupleMetric: 0
-  groupMetric: 0
-  min: 0
-  max: 1
+  groupMetric: 2
+  min: 10
+  max: 30
   curveType: 0
   customCurve:
     serializedVersion: 2
@@ -71,6 +71,8 @@ MonoBehaviour:
     threshold: 0
   selectedReferences: []
   selectedNames:
-  - 
-  - 
-  - 
+  - R_ThumbTip
+  - L_ThumbTip
+  - R_IndexTip
+  - L_IndexTip
+  - Chest

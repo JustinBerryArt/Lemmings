@@ -107,6 +107,7 @@ namespace Lemmings
                 // Fire events on state changes
                 rel.CompareStatus();
             }
+           
             
             //Debug.Log(ValidRelationships.Count());
         }

@@ -185,6 +185,7 @@ public sealed class BeBodBopSender : MonoBehaviour
     public void PlayFixedNote01(float pitch01, float velocity01, float duration01, MonoBehaviour runner = null)
     {
         var host = runner ? runner : this;
+        Debug.Log("Pitch: " + pitch01 + "Velocity: " + velocity01 + "Duration: " + duration01);
         host.StartCoroutine(CoPlayFixedNote01(pitch01, velocity01, duration01));
     }
 
@@ -195,6 +196,7 @@ public sealed class BeBodBopSender : MonoBehaviour
         float dur = Mathf.Lerp(setting.sustain, setting.sustain, Mathf.Clamp01(duration01));
         byte on = (byte)(0x90 | ChNibble);
         byte off = (byte)(0x80 | ChNibble);
+        Debug.Log("Played " + note);
         SendShort(on,  (byte)note, (byte)vel);
         yield return new WaitForSeconds(dur);
         SendShort(off, (byte)note, 64);

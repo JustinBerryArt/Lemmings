@@ -22,8 +22,8 @@ MonoBehaviour:
   coupleMetric: 0
   throupleMetric: 0
   groupMetric: 0
-  min: 0
-  max: 1
+  min: 3.31
+  max: 13.01
   curveType: 0
   customCurve:
     serializedVersion: 2

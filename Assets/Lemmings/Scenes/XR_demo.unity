@@ -150,12 +150,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sender: {fileID: 356278655}
+  useNote1: 1
   BeatTiming1: {fileID: 11400000, guid: 5135fc4dfa1694f458650c253ffd8ca7, type: 2}
   BeatNote1: {fileID: 11400000, guid: 42cc5febf293afc46bc212c668ca2aeb, type: 2}
+  useNote2: 1
   BeatTiming2: {fileID: 11400000, guid: 876b52acf7b4c08449b6669d5ce0d712, type: 2}
   BeatNote2: {fileID: 11400000, guid: afcee86c7dbafae44b2128cd108d0b7f, type: 2}
+  useNote3: 1
   BeatTiming3: {fileID: 11400000, guid: f056273303cb8f4469dc9ac14cfc5494, type: 2}
   BeatNote3: {fileID: 11400000, guid: 8505d97863b55c54c93fee116d8075cd, type: 2}
+  useNote4: 0
   BeatTiming4: {fileID: 11400000, guid: fa554ec984fda774aad929f7694b7b44, type: 2}
   BeatNote4: {fileID: 11400000, guid: f72f766a0684f63478c4526a0a11c52b, type: 2}
 --- !u!114 &356278655
