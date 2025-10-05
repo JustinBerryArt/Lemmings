@@ -15,15 +15,15 @@ MonoBehaviour:
   ID: NoteSelection3
   description: This controls the way that a particular beats note is selected from
     the scale defined in settings.
-  useInputSystem: 0
+  useInputSystem: 1
   Herd: {fileID: 11400000, guid: 27130911a393ad540b04c8739b117ad3, type: 2}
   familyType: 1
   singleMetric: 0
   coupleMetric: 2
   throupleMetric: 0
   groupMetric: 0
-  min: 45
-  max: 100
+  min: 37.18
+  max: 82.31
   curveType: 0
   customCurve:
     serializedVersion: 2

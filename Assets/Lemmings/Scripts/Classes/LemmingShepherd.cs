@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Lemmings.Input;
@@ -80,7 +81,7 @@ namespace Lemmings
             // Find Relevant Lemmings and register them, as well as any relationships that use them
             InitializeHerd();
         }
-
+        
         
         // ---------------- Method Break -------------------------------------------------------     <<    <<   <<   <<
         
@@ -92,6 +93,7 @@ namespace Lemmings
         /// </summary>
         private void Update()
         {
+            
             for (int i = 0; i < Relationships.Count; i++)
             {
                 var rel = Relationships[i];
@@ -107,7 +109,6 @@ namespace Lemmings
                 // Fire events on state changes
                 rel.CompareStatus();
             }
-           
             
             //Debug.Log(ValidRelationships.Count());
         }
@@ -181,7 +182,7 @@ namespace Lemmings
 
         #region Relationship Registration and Removal - Safety Checks and Maintence
 
-        
+        /*
         /// <summary>
         /// Registers a LemmingRelationship, maps all involved Lemmings to it, and stores descriptive metadata.
         /// </summary>
@@ -215,10 +216,41 @@ namespace Lemmings
                 members.Add((reference.name, role));
             }
             
+            ref var soInfo = ref relationship.CachedInfo;
+            soInfo.RefreshDynamic();
+            RelationshipDetails[relationship] = soInfo;
+            
             //TODO: Is this the best insurance or should I also use Sync Role from Reference function?
             relationship.SyncReferencesFromNames(); // <-- Force resync
 
             RelationshipDetails[relationship] = relationship.Info;
+        }
+        */
+        
+        public void RegisterRelationship(LemmingRelationship relationship)
+        {
+            if (!relationship) return;
+
+            // Add to master list once
+            if (!Relationships.Contains(relationship))
+                Relationships.Add(relationship);
+
+            // 1) Ensure the asset actually has members first
+            relationship.SyncReferencesFromNames();   // Needs Herd set on the asset
+            foreach (var reference in relationship.References)
+            {
+                reference.EnsureResolved();
+                var lemming = reference.Lemming;
+                if (!lemming) continue;
+
+                if (!LemmingToRelationships.TryGetValue(lemming, out var list))
+                    LemmingToRelationships[lemming] = list = new List<LemmingRelationship>();
+                if (!list.Contains(relationship)) list.Add(relationship);
+            }
+
+            // 2) Invalidate (if you have it) then hydrate once, now that members exist
+            relationship.InvalidateCache();           // optional but nice if you cache statics
+            RelationshipDetails[relationship] = relationship.Info;  // Info refreshes dynamic
         }
         
         // ---------------- Method Break -------------------------------------------------------     <<    <<   <<   <<

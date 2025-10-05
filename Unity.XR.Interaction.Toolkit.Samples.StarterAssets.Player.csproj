@@ -281,9 +281,6 @@
     <Reference Include="nunit.framework">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\PackageCache\com.unity.ext.nunit@031a54704bff\net40\unity-custom\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\PackageCache\com.unity.nuget.newtonsoft-json@74deb55db2a0\Runtime\AOT\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="netstandard">
       <HintPath>D:\SOFTWARE\Unity Hub\6000.1.3f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
     </Reference>

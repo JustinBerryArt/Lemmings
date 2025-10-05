@@ -15,15 +15,15 @@ MonoBehaviour:
   ID: Timing2
   description: Sets where in the bar this note will be played. Options for timing
     are defined in the settings.
-  useInputSystem: 0
+  useInputSystem: 1
   Herd: {fileID: 11400000, guid: 27130911a393ad540b04c8739b117ad3, type: 2}
-  familyType: 0
-  singleMetric: 1
+  familyType: 2
+  singleMetric: 0
   coupleMetric: 0
-  throupleMetric: 0
+  throupleMetric: 7
   groupMetric: 0
   min: 30
-  max: 90
+  max: 120
   curveType: 0
   customCurve:
     serializedVersion: 2
@@ -61,7 +61,7 @@ MonoBehaviour:
     directionOnly: 0
     relativeToMembers: 0
     axisSelection: 0
-    invert: 0
+    invert: 1
     axisSelectionThrouple: 0
     densityMethod: 0
     sizeMethod: 0
@@ -72,9 +72,21 @@ MonoBehaviour:
     threshold: 0
   selectedReferences:
   - source: {fileID: 0}
-    scenePath: LemmingShepherd/BasicRig/Camera Offset/Left Hand Tracking/L_Wrist/L_MiddleMetacarpal/L_MiddleProximal/L_MiddleIntermediate/L_MiddleDistal/L_MiddleTip
-    objectName: L_MiddleTip
-    name: L_MiddleTip
+    scenePath: LemmingShepherd/BasicRig/Camera Offset/Left Hand Tracking/L_Wrist/L_Palm
+    objectName: L_Palm
+    name: L_Palm
+    confidence: 1
+  - source: {fileID: 0}
+    scenePath: LemmingShepherd/BasicRig/Camera Offset/Left Hand Tracking/L_Wrist/L_ThumbMetacarpal/L_ThumbProximal/L_ThumbDistal/L_ThumbTip
+    objectName: L_ThumbTip
+    name: L_ThumbTip
+    confidence: 1
+  - source: {fileID: 0}
+    scenePath: LemmingShepherd/BasicRig/Camera Offset/Left Hand Tracking/L_Wrist/L_LittleMetacarpal/L_LittleProximal/L_LittleIntermediate/L_LittleDistal/L_LittleTip
+    objectName: L_LittleTip
+    name: L_LittleTip
     confidence: 1
   selectedNames:
-  - L_MiddleTip
+  - L_Palm
+  - L_ThumbTip
+  - L_LittleTip

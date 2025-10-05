@@ -869,6 +869,18 @@ PrefabInstance:
       propertyPath: uiRoot
       value: 
       objectReference: {fileID: 1790441008}
+    - target: {fileID: 7127460808969441414, guid: 4f9ccc8a2c8f0de49aee0369bf73fdbb, type: 3}
+      propertyPath: alwaysVisible
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7127460808969441414, guid: 4f9ccc8a2c8f0de49aee0369bf73fdbb, type: 3}
+      propertyPath: enableKeyInput
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8901908120286921431, guid: 4f9ccc8a2c8f0de49aee0369bf73fdbb, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

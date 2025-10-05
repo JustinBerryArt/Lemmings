@@ -663,18 +663,10 @@ namespace Lemmings
         
         public void OnMetricChanged()
         {
-            SetDefaultRelationSettings(_settings);
-            
-            /*
-            // Create fresh settings
-            var newSettings = new LemmingRelationSetting();
-      
-            // Pull from old _settings only for fields relevant to the new metric
-            RehydrateSettings(newSettings, _settings, Family, Metric);
-
-            // Replace
-            _settings = newSettings;
-            */
+            var old = _settings;
+            SetDefaultRelationSettings(_settings); // or create fresh into temp
+            RehydrateSettings(_settings, old, Family, Metric);
+            InvalidateCache();
         }
 
         private void SetDefaultRelationSettings(LemmingRelationSetting settings)
@@ -1051,7 +1043,7 @@ private void RehydrateSettings(LemmingRelationSetting fresh, LemmingRelationSett
                 _lastFamilyType = familyType;
                 _lastMetric     = currentMetric;
 
-                OnMetricChanged();  // <- where you reset _settings with new data
+                //OnMetricChanged();  // <- where you reset _settings with new data
             }
             
             

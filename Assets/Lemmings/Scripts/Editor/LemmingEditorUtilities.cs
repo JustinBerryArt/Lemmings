@@ -549,7 +549,7 @@ namespace Lemmings
 
                 if (!Equals(currentMetricEnum, lastMetricEnum))
                 {
-                    relationship.OnMetricChanged();
+                    //relationship.OnMetricChanged();
                     lastMetricEnum = currentMetricEnum;
                 }
 
@@ -3084,10 +3084,10 @@ namespace Lemmings
             if (metric == null) return null;
 
             string methodName = $"DrawSettings{family}{metric}";
-            Debug.Log($"{methodName}");
+            //Debug.Log($"{methodName}");
             var method = typeof(LemmingMetricSettingsDrawer).GetMethod(methodName);
             if (method == null) return null;
-            Debug.Log(method.ToString());
+            //Debug.Log(method.ToString());
             return (SerializedProperty settingProp) =>
             {
                 LemmingMetricSettingsDrawer.DrawAdvancedFoldout(() =>

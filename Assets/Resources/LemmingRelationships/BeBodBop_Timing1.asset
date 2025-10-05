@@ -15,15 +15,15 @@ MonoBehaviour:
   ID: Timing1
   description: Sets where in the bar this note will be played. Options for timing
     are defined in the settings.
-  useInputSystem: 0
+  useInputSystem: 1
   Herd: {fileID: 11400000, guid: 27130911a393ad540b04c8739b117ad3, type: 2}
-  familyType: 0
-  singleMetric: 1
+  familyType: 2
+  singleMetric: 0
   coupleMetric: 0
-  throupleMetric: 0
+  throupleMetric: 7
   groupMetric: 0
-  min: 30
-  max: 100
+  min: -90
+  max: 40
   curveType: 0
   customCurve:
     serializedVersion: 2
@@ -61,7 +61,7 @@ MonoBehaviour:
     directionOnly: 0
     relativeToMembers: 0
     axisSelection: 0
-    invert: 0
+    invert: 1
     axisSelectionThrouple: 0
     densityMethod: 0
     sizeMethod: 0
@@ -76,5 +76,17 @@ MonoBehaviour:
     objectName: R_Palm
     name: R_Palm
     confidence: 1
+  - source: {fileID: 0}
+    scenePath: LemmingShepherd/BasicRig/Camera Offset/Right Hand Tracking/R_Wrist/R_ThumbMetacarpal/R_ThumbProximal/R_ThumbDistal/R_ThumbTip
+    objectName: R_ThumbTip
+    name: R_ThumbTip
+    confidence: 1
+  - source: {fileID: 0}
+    scenePath: LemmingShepherd/BasicRig/Camera Offset/Right Hand Tracking/R_Wrist/R_LittleMetacarpal/R_LittleProximal/R_LittleIntermediate/R_LittleDistal/R_LittleTip
+    objectName: R_LittleTip
+    name: R_LittleTip
+    confidence: 1
   selectedNames:
   - R_Palm
+  - R_ThumbTip
+  - R_LittleTip

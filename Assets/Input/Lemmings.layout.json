@@ -1,4 +1,285 @@
 {
     "name": "Lemmings",
-    "controls": []
+    "controls": [
+        {
+            "name": "Timing1.RawValue",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "Timing1.Normalized",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "Timing1.Curved",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "Timing1.Over",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "Timing1.Under",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "Timing1.InRange",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "Timing1.AsAxis",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "NoteSelection1.RawValue",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "NoteSelection1.Normalized",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "NoteSelection1.Curved",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "NoteSelection1.Over",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "NoteSelection1.Under",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "NoteSelection1.InRange",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "NoteSelection1.AsAxis",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "Timing2.RawValue",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "Timing2.Normalized",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "Timing2.Curved",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "Timing2.Over",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "Timing2.Under",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "Timing2.InRange",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "Timing2.AsAxis",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "NoteSelection2.RawValue",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "NoteSelection2.Normalized",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "NoteSelection2.Curved",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "NoteSelection2.Over",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "NoteSelection2.Under",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "NoteSelection2.InRange",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "NoteSelection2.AsAxis",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "Timing3.RawValue",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "Timing3.Normalized",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "Timing3.Curved",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "Timing3.Over",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "Timing3.Under",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "Timing3.InRange",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "Timing3.AsAxis",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "NoteSelection3.RawValue",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "NoteSelection3.Normalized",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "NoteSelection3.Curved",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "NoteSelection3.Over",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "NoteSelection3.Under",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "NoteSelection3.InRange",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "NoteSelection3.AsAxis",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "Timing4.RawValue",
+            "layout": "Vector3",
+            "format": ""
+        },
+        {
+            "name": "Timing4.Normalized",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "Timing4.Curved",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "Timing4.Over",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "Timing4.Under",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "Timing4.InRange",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "Timing4.AsAxis",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "NoteSelection4.RawValue",
+            "layout": "Vector3",
+            "format": ""
+        },
+        {
+            "name": "NoteSelection4.Normalized",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "NoteSelection4.Curved",
+            "layout": "Axis",
+            "format": ""
+        },
+        {
+            "name": "NoteSelection4.Over",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "NoteSelection4.Under",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "NoteSelection4.InRange",
+            "layout": "Button",
+            "format": "BYTE"
+        },
+        {
+            "name": "NoteSelection4.AsAxis",
+            "layout": "Axis",
+            "format": ""
+        }
+    ]
 }

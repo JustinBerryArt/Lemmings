@@ -27,6 +27,8 @@ public class BeBodBopMachine : MonoBehaviour
     private float _beatTiming1;
     public LemmingRelationship BeatNote1;
     private float _beatNote1;
+    private LemmingRelationshipInfo _timing1Info;
+    private LemmingRelationshipInfo _note1Info;
 
     private bool _playBeat1;
     private bool _beat1Ready;
@@ -37,6 +39,8 @@ public class BeBodBopMachine : MonoBehaviour
     private float _beatTiming2;
     public LemmingRelationship BeatNote2;
     private float _beatNote2;
+    private LemmingRelationshipInfo _timing2Info;
+    private LemmingRelationshipInfo _note2Info;
     
     private bool _playBeat2;
     private bool _beat2Ready;
@@ -47,6 +51,8 @@ public class BeBodBopMachine : MonoBehaviour
     private float _beatTiming3;
     public LemmingRelationship BeatNote3;
     private float _beatNote3;
+    private LemmingRelationshipInfo _timing3Info;
+    private LemmingRelationshipInfo _note3Info;
 
     private bool _playBeat3;
     private bool _beat3Ready;
@@ -57,6 +63,8 @@ public class BeBodBopMachine : MonoBehaviour
     private float _beatTiming4;
     public LemmingRelationship BeatNote4;
     private float _beatNote4;
+    private LemmingRelationshipInfo _timing4Info;
+    private LemmingRelationshipInfo _note4Info;
 
     private bool _playBeat4;
     private bool _beat4Ready;
@@ -74,16 +82,55 @@ public class BeBodBopMachine : MonoBehaviour
 
     void Start()
     {
-        var s = Lemmings.LemmingShepherd.Instance;
-        if (!s) { Debug.LogError("No LemmingShepherd in scene."); enabled = false; return; }
+        RegisterRelationships();
+    }
 
-        void Reg(Lemmings.LemmingRelationship r){ if (r) s.RegisterRelationship(r); }
+    
+    public void Update()
+    {
+        PullData();
+        PlayBeat();
+        
+    }
+    
+    
+    void RegisterRelationships()
+    {
+        var shepherd = LemmingShepherd.Instance;
+        if (!shepherd) { Debug.LogError("No LemmingShepherd in scene."); enabled = false; return; }
+
+        void Reg(LemmingRelationship r)
+        {
+            if (!r) return;
+
+            // 1) Add to shepherd's list
+            shepherd.RegisterRelationship(r);
+
+            // 2) Make sure selectedReferences is actually populated from names/herd
+            r.SyncReferencesFromNames();                  // uses Herd; make sure Herd is assigned on the SO
+
+            // 3) Resolve those references once (caches Transform/Lemming)
+            foreach (var reference in r.References)
+                reference.EnsureResolved();
+
+            // 4) Rebuild the cached info now that members exist
+            r.InvalidateCache();
+            _ = r.Info;                                   // hydrate once so the first Update() isn’t stale
+        }
 
         Reg(BeatTiming1); Reg(BeatNote1);
         Reg(BeatTiming2); Reg(BeatNote2);
         Reg(BeatTiming3); Reg(BeatNote3);
         Reg(BeatTiming4); Reg(BeatNote4);
+        
+
+        
+
+                
+
+        
     }
+    
     
     /// <summary>
     /// This pulls the instrument settings from the Lemming Relationships cached data
@@ -92,33 +139,39 @@ public class BeBodBopMachine : MonoBehaviour
     void PullData() 
     {
         // Beat 1 update 
-        var timing1info = BeatTiming1.Info;
-        var note1info = BeatNote1.Info;
-        _playBeat1 = useNote1 && !timing1info.Under;
-        if (BeatTiming1) _beatTiming1 = timing1info.CurvedValue; 
-        if (BeatNote1) _beatNote1 = note1info.CurvedValue;
+        _timing1Info = BeatTiming1.Info;
+        _note1Info = BeatNote1.Info;
+        _playBeat1 = useNote1 && !_note1Info.Under;
+        //Debug.Log("note 1: " + _note1Info.Under);
+        if (BeatTiming1) _beatTiming1 = _timing1Info.CurvedValue; 
+        if (BeatNote1) _beatNote1 = _note1Info.CurvedValue;
+
         
         // Beat 2 update 
-        var timing2info = BeatTiming2.Info;
-        var note2info = BeatNote2.Info;
-        _playBeat2 = useNote2 && !timing2info.Under;
-        if (BeatTiming2) _beatTiming2 = timing2info.CurvedValue; 
-        if (BeatNote2) _beatNote2 = note2info.CurvedValue;
+        _timing2Info = BeatTiming2.Info;
+        _note2Info = BeatNote2.Info;
+        _playBeat2 = useNote2 && !_note2Info.Under;
+        //Debug.Log("note 2: " + _note2Info.Under);
+        if (BeatTiming2) _beatTiming2 = _timing2Info.CurvedValue; 
+        if (BeatNote2) _beatNote2 = _note2Info.CurvedValue;
 
+        
         // Beat 3 update 
-        var timing3info = BeatTiming3.Info;
-        var note3info = BeatNote3.Info;
-        _playBeat3 = useNote3 && !timing3info.Under;
-        if (BeatTiming3) _beatTiming3 = timing3info.CurvedValue; 
-        if (BeatNote3) _beatNote3 = note3info.CurvedValue;
+        _timing3Info = BeatTiming3.Info;
+        _note3Info = BeatNote3.Info;
+        _playBeat3 = useNote3 && !_note3Info.Under;
+        //Debug.Log("note 3: " + _note3Info.Under);
+        if (BeatTiming3) _beatTiming3 = _timing3Info.CurvedValue; 
+        if (BeatNote3) _beatNote3 = _note3Info.CurvedValue;
+
         
         // Beat 4 update 
-        var timing4info = BeatTiming4.Info;
-        var note4info = BeatNote4.Info;
-        _playBeat4 = useNote4 && !timing4info.Under;
-        if (BeatTiming4) _beatTiming4 = timing4info.CurvedValue; 
-        if (BeatNote4) _beatNote4 = note4info.CurvedValue;
-        
+        _timing4Info = BeatTiming4.Info;
+        _note4Info = BeatNote4.Info;
+        _playBeat4 = useNote4 && !_note4Info.Under;
+        if (BeatTiming4) _beatTiming4 = _timing4Info.CurvedValue; 
+        if (BeatNote4) _beatNote4 = _note4Info.CurvedValue;
+
         /*
         _playBeat4 =useNote4 &&  BeatTiming4 && !BeatTiming4.CachedInfo.Under;
         if (BeatTiming4) _beatTiming4 = BeatTiming4.CachedInfo.CurvedValue; 
@@ -133,10 +186,10 @@ public class BeBodBopMachine : MonoBehaviour
     /// <returns>The duration for a beat</returns>
     public float SelectRatio(float timing)
     {
-        var arr = _setting?.noteRatios;
-        if (arr == null || arr.Length == 0) return 2f/3f; // fallback
-        int idx = Mathf.RoundToInt(Mathf.Clamp01(timing) * (arr.Length - 1));
-        return Mathf.Clamp01(arr[idx]);
+        var array = _setting?.noteRatios;
+        if (array == null || array.Length == 0) return 2f/3f; // fallback
+        int index = Mathf.RoundToInt(Mathf.Clamp01(timing) * (array.Length - 1));
+        return Mathf.Clamp01(array[index]);
     }
     
     /// <summary>
@@ -194,7 +247,7 @@ public class BeBodBopMachine : MonoBehaviour
             if (_beatTimer >= periodC && _beat3Ready)
             {
                 _beat3Ready = false;
-                Debug.Log("Note3 Traw: " + _beatTiming3 + " Tper: " + periodC  + "Note: " + _beatNote3 );
+                //Debug.Log("Note3 Traw: " + _beatTiming3 + " Tper: " + periodC  + "Note: " + _beatNote3 );
                 sender.PlayFixedNote01(_beatNote3, _setting.velocity, _setting.sustain);
             }
         }
@@ -205,19 +258,12 @@ public class BeBodBopMachine : MonoBehaviour
             if (_beatTimer >= periodD && _beat4Ready)
             {
                 _beat4Ready = false;
-                Debug.Log("Note4 Traw: " + _beatTiming4 + " Tper: " + periodD  + "Note: " + _beatNote4 );
+                //Debug.Log("Note4 Traw: " + _beatTiming4 + " Tper: " + periodD  + "Note: " + _beatNote4 );
                 sender.PlayFixedNote01(_beatNote4, _setting.velocity, _setting.sustain);
             }
         }
 
     }
     
-    /// <summary>
-    /// Using Late Update so that it pulls after the Shepherd's update function
-    /// </summary>
-    public void LateUpdate()
-    {
-        PullData();
-        PlayBeat();
-    }
+
 }

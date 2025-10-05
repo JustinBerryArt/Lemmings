@@ -323,9 +323,6 @@
     <Reference Include="nunit.framework">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\PackageCache\com.unity.ext.nunit@031a54704bff\net40\unity-custom\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\PackageCache\com.unity.nuget.newtonsoft-json@74deb55db2a0\Runtime\AOT\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="netstandard">
       <HintPath>D:\SOFTWARE\Unity Hub\6000.1.3f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
     </Reference>
@@ -692,32 +689,11 @@
     <Reference Include="System.Xml.Serialization">
       <HintPath>D:\SOFTWARE\Unity Hub\6000.1.3f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
     </Reference>
-    <Reference Include="Meta.WitAi">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Meta.WitAi.dll</HintPath>
-    </Reference>
-    <Reference Include="Meta.Voice.Hub.Runtime">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Meta.Voice.Hub.Runtime.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.AI.Navigation">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.AI.Navigation.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.CoreUtils">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.XR.CoreUtils.dll</HintPath>
-    </Reference>
-    <Reference Include="Oculus.Interaction.OVR">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Oculus.Interaction.OVR.dll</HintPath>
-    </Reference>
-    <Reference Include="Oculus.Interaction.UnityXR">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Oculus.Interaction.UnityXR.dll</HintPath>
-    </Reference>
-    <Reference Include="Meta.XR.BuildingBlocks">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Meta.XR.BuildingBlocks.dll</HintPath>
-    </Reference>
-    <Reference Include="Oculus.Interaction">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Oculus.Interaction.dll</HintPath>
-    </Reference>
-    <Reference Include="meta.xr.mrutilitykit">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\meta.xr.mrutilitykit.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
@@ -728,32 +704,14 @@
     <Reference Include="Unity.XR.CompositionLayers">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.XR.CompositionLayers.dll</HintPath>
     </Reference>
-    <Reference Include="Meta.Wit.Dictation">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Meta.Wit.Dictation.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.RenderPipelines.GPUDriven.Runtime">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.RenderPipelines.GPUDriven.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.ARFoundation.InternalUtils">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.XR.ARFoundation.InternalUtils.dll</HintPath>
     </Reference>
-    <Reference Include="Oculus.Interaction.OVR.Samples">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Oculus.Interaction.OVR.Samples.dll</HintPath>
-    </Reference>
-    <Reference Include="Meta.Voice.Opus">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Meta.Voice.Opus.dll</HintPath>
-    </Reference>
-    <Reference Include="Meta.VoiceSDK.Mic.Other">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Meta.VoiceSDK.Mic.Other.dll</HintPath>
-    </Reference>
-    <Reference Include="Meta.WitAi.Lib">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Meta.WitAi.Lib.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Config.Runtime">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Config.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Meta.XR.ImmersiveDebugger.Interface">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Meta.XR.ImmersiveDebugger.Interface.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
@@ -764,17 +722,8 @@
     <Reference Include="Unity.XR.OpenXR.Features.ConformanceAutomation">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.XR.OpenXR.Features.ConformanceAutomation.dll</HintPath>
     </Reference>
-    <Reference Include="VoiceSDK.Telemetry.Runtime">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\VoiceSDK.Telemetry.Runtime.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.XR.Hands">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.XR.Hands.dll</HintPath>
-    </Reference>
-    <Reference Include="Oculus.Platform">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Oculus.Platform.dll</HintPath>
-    </Reference>
-    <Reference Include="Meta.VoiceSDK.Mic.Common">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Meta.VoiceSDK.Mic.Common.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
@@ -782,14 +731,8 @@
     <Reference Include="Unity.XR.Management">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.XR.Management.dll</HintPath>
     </Reference>
-    <Reference Include="VoiceSDK.Runtime.Composer">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\VoiceSDK.Runtime.Composer.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Runtime">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="AssistantVoiceCommandCommon">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\AssistantVoiceCommandCommon.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.Simulation">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.XR.Simulation.dll</HintPath>
@@ -797,17 +740,11 @@
     <Reference Include="Unity.XR.OpenXR">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.XR.OpenXR.dll</HintPath>
     </Reference>
-    <Reference Include="Meta.XR.ImmersiveDebugger">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Meta.XR.ImmersiveDebugger.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.CompositionLayers.UIInteraction">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.XR.CompositionLayers.UIInteraction.dll</HintPath>
-    </Reference>
-    <Reference Include="Meta.XR.MultiplayerBlocks.Shared">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Meta.XR.MultiplayerBlocks.Shared.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.2D.Runtime">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.2D.Runtime.dll</HintPath>
@@ -818,9 +755,6 @@
     <Reference Include="Unity.InputSystem.ForUI">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.InputSystem.ForUI.dll</HintPath>
     </Reference>
-    <Reference Include="Meta.XR.EnvironmentDepth">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Meta.XR.EnvironmentDepth.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.XR.OpenXR.Features.OculusQuestSupport">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.XR.OpenXR.Features.OculusQuestSupport.dll</HintPath>
     </Reference>
@@ -830,29 +764,14 @@
     <Reference Include="Unity.RenderPipelines.Universal.Shaders">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
     </Reference>
-    <Reference Include="Oculus.VR">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Oculus.VR.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime.Shared">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.Shared.dll</HintPath>
-    </Reference>
-    <Reference Include="Meta.Wit.Composer">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Meta.Wit.Composer.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Meta.WitAi.TTS">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Meta.WitAi.TTS.dll</HintPath>
-    </Reference>
-    <Reference Include="Oculus.Haptics">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Oculus.Haptics.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.XR.ARFoundation">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.XR.ARFoundation.dll</HintPath>
-    </Reference>
-    <Reference Include="Meta.Net.endel.nativewebsocket">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Meta.Net.endel.nativewebsocket.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.ARSubsystems">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.XR.ARSubsystems.dll</HintPath>
@@ -863,14 +782,8 @@
     <Reference Include="UnityEngine.XR.LegacyInputHelpers">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
-    <Reference Include="Oculus.Interaction.Samples">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Oculus.Interaction.Samples.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Multiplayer.Center.Common">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.Multiplayer.Center.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="VoiceSDK.Dictation.Runtime">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\VoiceSDK.Dictation.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.Interaction.Toolkit">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.XR.Interaction.Toolkit.dll</HintPath>
@@ -881,20 +794,8 @@
     <Reference Include="Unity.XR.OpenXR.Features.MetaQuestSupport">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.XR.OpenXR.Features.MetaQuestSupport.dll</HintPath>
     </Reference>
-    <Reference Include="VoiceSDK.Runtime">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\VoiceSDK.Runtime.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Burst">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
-    </Reference>
-    <Reference Include="Meta.XR.Audio">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Meta.XR.Audio.dll</HintPath>
-    </Reference>
-    <Reference Include="AssistantCoreSDKRuntime">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\AssistantCoreSDKRuntime.dll</HintPath>
-    </Reference>
-    <Reference Include="Meta.Voice.NLayer">
-      <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Meta.Voice.NLayer.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rendering.LightTransport.Runtime">
       <HintPath>C:\Users\Justi\Documents\GitHub\Lemmings\Library\ScriptAssemblies\Unity.Rendering.LightTransport.Runtime.dll</HintPath>

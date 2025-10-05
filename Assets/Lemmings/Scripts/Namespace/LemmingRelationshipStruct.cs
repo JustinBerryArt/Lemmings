@@ -370,7 +370,7 @@ namespace Lemmings
 
         /// <summary>
         /// Constructs a new relation context.
-        /// This preffered method uses the full LemmingReference data which is more robust
+        /// This preferred method uses the full LemmingReference data which is more robust
         /// </summary>
         /// <param name="family">The type of relationship (e.g. Couple, Group).</param>
         /// <param name="references">The Lemming References involved in the relationship.</param>

@@ -67,6 +67,11 @@ namespace Lemmings.UI
             RefreshUI();
         }
 
+        //public void Update()
+        //{
+            //RefreshUI();
+        //}
+
         private void HandleDatumUpdated(LemmingDatum _) => RefreshUI();
 
         /// <summary>
@@ -75,8 +80,12 @@ namespace Lemmings.UI
         public void RefreshUI()
         {
             // If any UI reference is missing, skip without crashing
-            if (nameText == null || metricText == null || outputText == null || normalText == null || curvedText == null || statusText == null)
+            if (nameText == null || metricText == null || outputText == null || normalText == null ||
+                curvedText == null || statusText == null)
+            {
+                Debug.Log(nameText + " : " + metricText + " : " + outputText + " : " + normalText + " : " + curvedText + " : " + statusText);
                 return;
+            }
 
             // If no relationship, clear fields
             if (_info.Relationship == null)

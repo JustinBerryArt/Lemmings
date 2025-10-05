@@ -15,15 +15,15 @@ MonoBehaviour:
   ID: Timing3
   description: Sets where in the bar this note will be played. Options for timing
     are defined in the settings.
-  useInputSystem: 0
+  useInputSystem: 1
   Herd: {fileID: 11400000, guid: 27130911a393ad540b04c8739b117ad3, type: 2}
-  familyType: 1
+  familyType: 2
   singleMetric: 0
   coupleMetric: 0
-  throupleMetric: 0
+  throupleMetric: 7
   groupMetric: 0
-  min: 0.7
-  max: 1.1
+  min: 45
+  max: 120
   curveType: 0
   customCurve:
     serializedVersion: 2
@@ -61,26 +61,32 @@ MonoBehaviour:
     directionOnly: 0
     relativeToMembers: 0
     axisSelection: 0
-    invert: 0
+    invert: 1
     axisSelectionThrouple: 0
     densityMethod: 0
     sizeMethod: 0
-    useSingleAxis: 0
+    useSingleAxis: 1
     singleAxis: 1
     referenceVector: {x: 0, y: 0, z: 0}
     rotationAxis: {x: 0, y: 0, z: 0}
     threshold: 0
   selectedReferences:
   - source: {fileID: 0}
-    scenePath: LemmingShepherd/BasicRig/Camera Offset/Right Hand Tracking/R_Wrist
-    objectName: R_Wrist
-    name: R_Wrist
+    scenePath: LemmingShepherd/Lemmings_Go_Here/ChestTracker
+    objectName: ChestTracker
+    name: Chest
     confidence: 1
   - source: {fileID: 0}
-    scenePath: LemmingShepherd/BasicRig/Camera Offset/Left Hand Tracking/L_Wrist
-    objectName: L_Wrist
-    name: L_Wrist
+    scenePath: LemmingShepherd/BasicRig/Camera Offset/Right Hand Tracking/R_Wrist/R_Palm
+    objectName: R_Palm
+    name: R_Palm
+    confidence: 1
+  - source: {fileID: 0}
+    scenePath: LemmingShepherd/BasicRig/Camera Offset/Left Hand Tracking/L_Wrist/L_Palm
+    objectName: L_Palm
+    name: L_Palm
     confidence: 1
   selectedNames:
-  - R_Wrist
-  - L_Wrist
+  - Chest
+  - R_Palm
+  - L_Palm

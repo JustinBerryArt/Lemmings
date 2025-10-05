@@ -184,12 +184,23 @@ public class LemmingUIRemappingController : MonoBehaviour
 
 
 
-    /// <summary>
-    /// Initializes UI lists and hooks up control pane button callbacks.
-    /// </summary>
+
+        
     private void Start()
     {
+        StartCoroutine(WaitToPopulate());
+
+    }
+
+    public IEnumerator WaitToPopulate()
+    {
+        yield return new WaitForSeconds(2);
+        PopulateUI();
+        yield return null;
+    }
         
+    private void PopulateUI()
+    {
         // Populate control pane lists from Shepherd
         PopulateRelationships();
         Debug.Log($"[UI] Loaded {LemmingShepherd.Instance.RelationshipDetails.Count} relationships and " +
@@ -200,9 +211,8 @@ public class LemmingUIRemappingController : MonoBehaviour
         PopulateCurveDropdown();
         
         MappingPaneSubscriptions();
-        
     }
-        
+    
         
     //_______________  METHOD BREAK   ___________________//
 
@@ -238,7 +248,7 @@ public class LemmingUIRemappingController : MonoBehaviour
     /// <summary>
     /// Instantiates and binds each relationship row based on <see cref="LemmingShepherd.ValidRelationships"/>.
     /// </summary>
-    private void PopulateRelationships()
+    public void PopulateRelationships()
     {
         Debug.Log("Number of relationships discovered: " + LemmingShepherd.Instance.ValidRelationships.Count());
         

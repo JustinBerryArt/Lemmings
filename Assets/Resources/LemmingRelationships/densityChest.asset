@@ -69,7 +69,32 @@ MonoBehaviour:
     referenceVector: {x: 0, y: 0, z: 0}
     rotationAxis: {x: 0, y: 0, z: 0}
     threshold: 0
-  selectedReferences: []
+  selectedReferences:
+  - source: {fileID: 0}
+    scenePath: LemmingShepherd/BasicRig/Camera Offset/Right Hand Tracking/R_Wrist/R_ThumbMetacarpal/R_ThumbProximal/R_ThumbDistal/R_ThumbTip
+    objectName: R_ThumbTip
+    name: R_ThumbTip
+    confidence: 1
+  - source: {fileID: 0}
+    scenePath: LemmingShepherd/BasicRig/Camera Offset/Left Hand Tracking/L_Wrist/L_ThumbMetacarpal/L_ThumbProximal/L_ThumbDistal/L_ThumbTip
+    objectName: L_ThumbTip
+    name: L_ThumbTip
+    confidence: 1
+  - source: {fileID: 0}
+    scenePath: LemmingShepherd/BasicRig/Camera Offset/Right Hand Tracking/R_Wrist/R_IndexMetacarpal/R_IndexProximal/R_IndexIntermediate/R_IndexDistal/R_IndexTip
+    objectName: R_IndexTip
+    name: R_IndexTip
+    confidence: 1
+  - source: {fileID: 0}
+    scenePath: LemmingShepherd/BasicRig/Camera Offset/Left Hand Tracking/L_Wrist/L_IndexMetacarpal/L_IndexProximal/L_IndexIntermediate/L_IndexDistal/L_IndexTip
+    objectName: L_IndexTip
+    name: L_IndexTip
+    confidence: 1
+  - source: {fileID: 0}
+    scenePath: LemmingShepherd/Lemmings_Go_Here/ChestTracker
+    objectName: ChestTracker
+    name: Chest
+    confidence: 1
   selectedNames:
   - R_ThumbTip
   - L_ThumbTip

@@ -41,8 +41,12 @@ namespace Lemmings.Input.Editor
         public static void GenerateJsonLayout()
         {
             // Load all LemmingRelationships stored in the designated Resources path
-            var relationships = Resources.LoadAll<LemmingRelationship>("LemmingRelationships");
-            if (relationships == null || relationships.Length == 0)
+            //var relationships = Resources.LoadAll<LemmingRelationship>("LemmingRelationships");
+            
+            var shepherd = LemmingShepherd.Instance;
+            var relationships = shepherd.Relationships;
+            
+            if (relationships == null || relationships.Count == 0)
             {
                 Debug.LogWarning("LemmingShepherd with relationships not found in scene.");
                 return;
