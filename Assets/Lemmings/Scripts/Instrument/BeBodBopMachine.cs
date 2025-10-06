@@ -20,6 +20,7 @@ public class BeBodBopMachine : MonoBehaviour
     private BeBodBopSetting _setting;
     [SerializeField] public float Timing => _beatTimer;
     private float _beatTimer;
+    public bool silent = false;
 
     [Header("Note 1")] 
     public bool useNote1 = true;
@@ -85,11 +86,18 @@ public class BeBodBopMachine : MonoBehaviour
         RegisterRelationships();
     }
 
+    public void SwapSilence()
+    {
+        Debug.Log("Going In: " + silent.ToString());
+        if (silent) silent = false; else silent = true;
+        Debug.Log("Going Out: " + silent.ToString());
+    }
     
     public void Update()
     {
         PullData();
-        PlayBeat();
+        if (!silent) PlayBeat();
+        
         
     }
     
@@ -137,11 +145,14 @@ public class BeBodBopMachine : MonoBehaviour
     /// </summary>
     /// <remarks>This relies on the relationships to be managed by a Lemming Shepherd</remarks>
     void PullData() 
-    {
+    {        
+        /*
+          
         // Beat 1 update 
         _timing1Info = BeatTiming1.Info;
         _note1Info = BeatNote1.Info;
-        _playBeat1 = useNote1 && !_note1Info.Under;
+        //_playBeat1 = useNote1 && !_note1Info.Under;
+        _playBeat1 = useNote1;
         //Debug.Log("note 1: " + _note1Info.Under);
         if (BeatTiming1) _beatTiming1 = _timing1Info.CurvedValue; 
         if (BeatNote1) _beatNote1 = _note1Info.CurvedValue;
@@ -150,7 +161,8 @@ public class BeBodBopMachine : MonoBehaviour
         // Beat 2 update 
         _timing2Info = BeatTiming2.Info;
         _note2Info = BeatNote2.Info;
-        _playBeat2 = useNote2 && !_note2Info.Under;
+        //_playBeat2 = useNote2 && !_note2Info.Under;
+        _playBeat2 = useNote2;
         //Debug.Log("note 2: " + _note2Info.Under);
         if (BeatTiming2) _beatTiming2 = _timing2Info.CurvedValue; 
         if (BeatNote2) _beatNote2 = _note2Info.CurvedValue;
@@ -159,7 +171,8 @@ public class BeBodBopMachine : MonoBehaviour
         // Beat 3 update 
         _timing3Info = BeatTiming3.Info;
         _note3Info = BeatNote3.Info;
-        _playBeat3 = useNote3 && !_note3Info.Under;
+        //_playBeat3 = useNote3 && !_note3Info.Under;
+        _playBeat3 = useNote3;
         //Debug.Log("note 3: " + _note3Info.Under);
         if (BeatTiming3) _beatTiming3 = _timing3Info.CurvedValue; 
         if (BeatNote3) _beatNote3 = _note3Info.CurvedValue;
@@ -168,15 +181,29 @@ public class BeBodBopMachine : MonoBehaviour
         // Beat 4 update 
         _timing4Info = BeatTiming4.Info;
         _note4Info = BeatNote4.Info;
-        _playBeat4 = useNote4 && !_note4Info.Under;
+        //_playBeat4 = useNote4 && !_note4Info.Under;
+        _playBeat4 = useNote4;
         if (BeatTiming4) _beatTiming4 = _timing4Info.CurvedValue; 
         if (BeatNote4) _beatNote4 = _note4Info.CurvedValue;
-
-        /*
-        _playBeat4 =useNote4 &&  BeatTiming4 && !BeatTiming4.CachedInfo.Under;
-        if (BeatTiming4) _beatTiming4 = BeatTiming4.CachedInfo.CurvedValue; 
-        if (BeatNote4) _beatNote4 = BeatNote4.CachedInfo.CurvedValue;
         */
+
+
+        _playBeat1 = useNote1 && !BeatNote1.CachedInfo.Under;
+        _beatTiming1 = BeatTiming1.CachedInfo.CurvedValue; 
+        _beatNote1 = BeatNote1.CachedInfo.CurvedValue;
+
+        _playBeat2 = useNote2 && !BeatNote2.CachedInfo.Under;
+        _beatTiming2 = BeatTiming2.CachedInfo.CurvedValue; 
+        _beatNote2 = BeatNote2.CachedInfo.CurvedValue;
+
+        _playBeat3 = useNote3 && !BeatNote3.CachedInfo.Under;
+        _beatTiming3 = BeatTiming3.CachedInfo.CurvedValue; 
+        _beatNote3 = BeatNote3.CachedInfo.CurvedValue;
+
+        _playBeat4 = useNote4 && !BeatNote4.CachedInfo.Under;
+        _beatTiming4 = BeatTiming4.CachedInfo.CurvedValue; 
+        _beatNote4 = BeatNote4.CachedInfo.CurvedValue;
+
 
     }
 
@@ -198,10 +225,15 @@ public class BeBodBopMachine : MonoBehaviour
     public void PlayBeat()
     {
         float periodBase = _setting.duration;
-        float periodA = Mathf.Max(1e-4f, periodBase * SelectRatio(_beatTiming1));
-        float periodB = Mathf.Max(1e-4f, periodBase * SelectRatio(_beatTiming2));
-        float periodC = Mathf.Max(1e-4f, periodBase * SelectRatio(_beatTiming3));
-        float periodD = Mathf.Max(1e-4f, periodBase * SelectRatio(_beatTiming4));
+        //float periodA = Mathf.Max(1e-4f, periodBase * SelectRatio(_beatTiming1));
+        //float periodB = Mathf.Max(1e-4f, periodBase * SelectRatio(_beatTiming2));
+        //float periodC = Mathf.Max(1e-4f, periodBase * SelectRatio(_beatTiming3));
+        //float periodD = Mathf.Max(1e-4f, periodBase * SelectRatio(_beatTiming4));
+
+        float periodA = Mathf.Max(1e-4f, periodBase * .25f);
+        float periodC = Mathf.Max(1e-4f, periodBase * .5f);
+        float periodB = Mathf.Max(1e-4f, periodBase * .75f);
+        float periodD = Mathf.Max(1e-4f, periodBase * .01f);
 
         _beatTimer += Time.deltaTime;
         

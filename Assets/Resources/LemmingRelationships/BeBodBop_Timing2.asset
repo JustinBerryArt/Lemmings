@@ -23,7 +23,7 @@ MonoBehaviour:
   throupleMetric: 7
   groupMetric: 0
   min: 30
-  max: 120
+  max: 100
   curveType: 0
   customCurve:
     serializedVersion: 2

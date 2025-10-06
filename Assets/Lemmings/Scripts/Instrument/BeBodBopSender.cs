@@ -185,7 +185,7 @@ public sealed class BeBodBopSender : MonoBehaviour
     public void PlayFixedNote01(float pitch01, float velocity01, float duration01, MonoBehaviour runner = null)
     {
         var host = runner ? runner : this;
-        Debug.Log("Pitch: " + pitch01 + "Velocity: " + velocity01 + "Duration: " + duration01);
+        Debug.Log("Pitch: " + pitch01);
         host.StartCoroutine(CoPlayFixedNote01(pitch01, velocity01, duration01));
     }
 

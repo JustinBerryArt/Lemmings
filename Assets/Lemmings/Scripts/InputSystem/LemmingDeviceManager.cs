@@ -92,11 +92,22 @@ namespace Lemmings.Input
             vector3Values.Clear();
             quaternionValues.Clear();
 
-            foreach (var rel in relationships)
+            foreach (LemmingRelationship rel in relationships)
             {
                 if (rel == null || string.IsNullOrWhiteSpace(rel.ID))
                     continue;
 
+                string id = rel.ID;
+                var cache = rel.CachedInfo;
+
+                floatValues[id + ".Normalized"] = cache.NormalizedValue;
+                floatValues[id + ".Curved"] = cache.CurvedValue;
+                floatValues[id + ".Over"] = cache.Over ? 1f : 0f;
+                floatValues[id + ".Under"] = cache.Under ? 1f : 0f;
+                floatValues[id + ".InRange"] = cache.InRange ? 1f : 0f;
+                floatValues[id + ".AsAxis"] = cache.AsAxis;
+
+                /*
                 string id = rel.ID;
                 var conv = rel.ToConverter();   // Provides normalized, curved, and threshold flags
                 var datum = rel.SetValue();     // Forces evaluation and caching of new value
@@ -122,6 +133,8 @@ namespace Lemmings.Input
                 floatValues[id + ".Under"]      = conv.Under    ? 1f : 0f;
                 floatValues[id + ".InRange"]    = conv.InRange  ? 1f : 0f;
                 floatValues[id + ".AsAxis"]     = conv.AsAxis;
+
+                */
             }
 
             // Push all accumulated values into the input system

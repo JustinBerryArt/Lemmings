@@ -22,8 +22,8 @@ MonoBehaviour:
   coupleMetric: 0
   throupleMetric: 7
   groupMetric: 0
-  min: -90
-  max: 40
+  min: 80
+  max: 140
   curveType: 0
   customCurve:
     serializedVersion: 2
@@ -61,7 +61,7 @@ MonoBehaviour:
     directionOnly: 0
     relativeToMembers: 0
     axisSelection: 0
-    invert: 1
+    invert: 0
     axisSelectionThrouple: 0
     densityMethod: 0
     sizeMethod: 0

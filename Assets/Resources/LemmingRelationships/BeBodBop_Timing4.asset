@@ -19,11 +19,11 @@ MonoBehaviour:
   Herd: {fileID: 11400000, guid: 27130911a393ad540b04c8739b117ad3, type: 2}
   familyType: 1
   singleMetric: 0
-  coupleMetric: 0
+  coupleMetric: 2
   throupleMetric: 0
   groupMetric: 0
-  min: 0
-  max: 1
+  min: 30
+  max: 50
   curveType: 0
   customCurve:
     serializedVersion: 2
@@ -72,15 +72,15 @@ MonoBehaviour:
     threshold: 0
   selectedReferences:
   - source: {fileID: 0}
-    scenePath: LemmingShepherd/BasicRig/Camera Offset/Right Hand Tracking/R_Wrist/R_RingMetacarpal/R_RingProximal/R_RingIntermediate/R_RingDistal/R_RingTip
-    objectName: R_RingTip
-    name: R_RingTip
+    scenePath: LemmingShepherd/BasicRig/Camera Offset/Left Hand Tracking/L_Wrist/L_ThumbMetacarpal/L_ThumbProximal/L_ThumbDistal/L_ThumbTip
+    objectName: L_ThumbTip
+    name: L_ThumbTip
     confidence: 1
   - source: {fileID: 0}
-    scenePath: LemmingShepherd/BasicRig/Camera Offset/Right Hand Tracking/R_Wrist/R_RingMetacarpal/R_RingProximal/R_RingIntermediate/R_RingDistal/R_RingTip
-    objectName: R_RingTip
-    name: R_RingTip
+    scenePath: LemmingShepherd/Lemmings_Go_Here/ChestTracker
+    objectName: ChestTracker
+    name: Chest
     confidence: 1
   selectedNames:
-  - R_RingTip
-  - R_RingTip
+  - L_ThumbTip
+  - Chest

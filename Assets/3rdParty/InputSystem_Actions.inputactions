@@ -1001,6 +1001,45 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Quit and Stop",
+            "id": "6f64a631-d3eb-49ec-92f6-b44382269c54",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "51b2d943-f150-46d0-bf08-5c7bdd4cbcd2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e2feac8e-2340-43a3-833b-1d020d11580d",
+                    "path": "<Keyboard>/#(0)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";XR",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "12ed51d2-bcdb-4c8a-86f8-fa1c17ecf770",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

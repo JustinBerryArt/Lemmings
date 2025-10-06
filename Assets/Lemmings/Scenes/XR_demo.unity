@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 356278656}
   - component: {fileID: 356278655}
+  - component: {fileID: 356278657}
   - component: {fileID: 356278654}
   m_Layer: 0
   m_Name: BeBodBopMachine
@@ -150,6 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sender: {fileID: 356278655}
+  silent: 0
   useNote1: 1
   BeatTiming1: {fileID: 11400000, guid: 5135fc4dfa1694f458650c253ffd8ca7, type: 2}
   BeatNote1: {fileID: 11400000, guid: 42cc5febf293afc46bc212c668ca2aeb, type: 2}
@@ -159,7 +161,7 @@ MonoBehaviour:
   useNote3: 1
   BeatTiming3: {fileID: 11400000, guid: f056273303cb8f4469dc9ac14cfc5494, type: 2}
   BeatNote3: {fileID: 11400000, guid: 8505d97863b55c54c93fee116d8075cd, type: 2}
-  useNote4: 0
+  useNote4: 1
   BeatTiming4: {fileID: 11400000, guid: fa554ec984fda774aad929f7694b7b44, type: 2}
   BeatNote4: {fileID: 11400000, guid: f72f766a0684f63478c4526a0a11c52b, type: 2}
 --- !u!114 &356278655
@@ -176,7 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   setting: {fileID: 11400000, guid: b34f918bb1d1b6246bc31c5d0b2c27ca, type: 2}
   midiChannel: 1
-  bus: 3
+  bus: 5
 --- !u!4 &356278656
 Transform:
   m_ObjectHideFlags: 0
@@ -192,6 +194,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &356278657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356278653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae3df18c28a12e4f807a9eaeb0994c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  instrument: {fileID: 356278654}
 --- !u!1001 &481090338
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -879,7 +894,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8901908120286921431, guid: 4f9ccc8a2c8f0de49aee0369bf73fdbb, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

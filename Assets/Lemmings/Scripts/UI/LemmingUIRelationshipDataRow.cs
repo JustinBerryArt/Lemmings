@@ -21,7 +21,12 @@ namespace Lemmings.UI
         [SerializeField] private TextMeshProUGUI statusText;
         [SerializeField] private Button remapButton;
 
+        private bool _set = false;
+        
         private LemmingRelationshipInfo _info;
+
+        private LemmingRelationship _relationship;
+        private LemmingRelationshipInfo _cache;
 
         /// <summary>
         /// Raised when the 'Remap' button is clicked on this row.
@@ -45,11 +50,19 @@ namespace Lemmings.UI
             if (statusText == null) Debug.LogError($"[LemmingUIRelationshipDataRow] statusText is not assigned on '{gameObject.name}'");
         }
 
+        public void Update()
+        {
+            if(_set) RefreshUI();
+        }
+
         /// <summary>
         /// Bind this row to the given LemmingRelationshipInfo and (re)draw the UI.
         /// </summary>
         public void Bind(LemmingRelationshipInfo info)
         {
+            if (info.Relationship != null)
+                _relationship = info.Relationship;
+
             // Unsubscribe previous update events
             if (_info.Relationship != null)
                 _info.Relationship.OnDatumUpdated -= HandleDatumUpdated;
@@ -62,7 +75,9 @@ namespace Lemmings.UI
             
             // Subscribe to Update and refresh UI accordingly
             info.Relationship.Updated += () => RefreshUI();
-            
+
+            _set = true;
+
             // Initial draw
             RefreshUI();
         }
@@ -94,14 +109,26 @@ namespace Lemmings.UI
                 return;
             }
 
+            if (_relationship != null)
+                _cache = _relationship.CachedInfo;
+
+            nameText.text = _cache.Id;
+            metricText.text = _cache.MetricName;
+            outputText.text = _cache.RawValue.ToString() ?? "<null>";
+            normalText.text = _cache.NormalizedValue.ToString("F2") ?? "<null>";
+            curvedText.text = _cache.CurvedValue.ToString("F2") ?? "<null>";
+            statusText.text = _cache.Status.ToString("F");
+
             // Static labels
+            /*
             nameText.text   = _info.Id;
             metricText.text = _info.MetricName;
             outputText.text = _info.RawValue.ToString() ?? "<null>";
             normalText.text = _info.NormalizedValue.ToString("F2") ?? "<null>";
             curvedText.text = _info.CurvedValue.ToString("F2") ?? "<null>";
             statusText.text = _info.Status.ToString("F");
-                                
+            */
+
         }
 
         private void ClearUI()
