@@ -22,7 +22,7 @@ MonoBehaviour:
   coupleMetric: 2
   throupleMetric: 0
   groupMetric: 0
-  min: 3.33
+  min: 3
   max: 12
   curveType: 0
   customCurve:

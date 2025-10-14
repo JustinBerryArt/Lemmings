@@ -20,7 +20,7 @@ MonoBehaviour:
   singleMetric: 0
   coupleMetric: 0
   throupleMetric: 0
-  groupMetric: 2
+  groupMetric: 4
   min: 10
   max: 30
   curveType: 0
