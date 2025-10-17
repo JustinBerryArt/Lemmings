@@ -14,41 +14,46 @@ public class MidiDemo3 : MonoBehaviour
     public bool playOn;
     public bool playOff;
     
-    [Header("Tremolo 1")]
-    [Range(0f,1f)] public float tremoloDuration;        // Period A (seconds)
-    [Range(0f,1f)] private float tremoloNoteDuration = .1f;    
-    [Range(0f,1f)] public float tremoloNote;
-    [Range(0f,1f)] private float tremoloNoteVelocity = .75f;
-    public bool playTremolo;
-    private float _tremoloTimer;
+    
+    
+    [Header("Beat 1")]
+    [Range(0f,1f)] public float beatTiming1;        // Period A (seconds)
+    [Range(0f,1f)] public float beatNoteDuration = .1f;    
+    [Range(0f,1f)] public float beatNote;
+    [Range(0f,1f)] public float beatNoteVelocity = .75f;
+    public bool playBeat1;
+    private float _beatTimer;
     private bool _wasPlayTremolo;
 
     
-    [Header("Tremolo 2 (follows 1 by ratio)")]
-    [Range(0f,1f)] public float tremoloDuration2;  // Float that determines ratio
-    [Range(0f,1f)] private float tremoloNoteDuration2 = .1f;       
-    [Range(0f,1f)] public float tremoloNote2;
-    [Range(0f,1f)] private float tremoloNoteVelocity2 = .75f;
-    public bool playTremolo2;
-    private float _tremoloTimer2;
+    
+    
+    [Range(0f,1f)] public float beatTiming2;  // Float that determines ratio
+    [Range(0f,1f)] public float beatNoteDuration2 = .1f;       
+    [Range(0f,1f)] public float beatNote2;
+    [Range(0f,1f)] public float beatNoteVelocity2 = .75f;
+    public bool playBeat2;
+    private float _beatTimer2;
     private bool _t2Ready;
 
-    [Header("Tremolo 3 (follows 1 by ratio)")]
-    [Range(0f,1f)] public float tremoloDuration3;  // Float that determines ratio
-    [Range(0f,1f)] private float tremoloNoteDuration3 = .1f;       
-    [Range(0f,1f)] public float tremoloNote3;
-    [Range(0f,1f)] private float tremoloNoteVelocity3 = .75f;
-    public bool playTremolo3;
-    private float _tremoloTimer3;
+    
+    [Header("Beat 3 (follows 1 by ratio)")]
+    [Range(0f,1f)] public float beatTiming3;  // Float that determines ratio
+    [Range(0f,1f)] public float beatNoteDuration3 = .1f;       
+    [Range(0f,1f)] public float beatNote3;
+    [Range(0f,1f)] public float beatNoteVelocity3 = .75f;
+    public bool playBeat3;
+    private float _beatTimer3;
     private bool _t3Ready;
     
-    [Header("Tremolo 4 (follows 1 by ratio)")]
-    [Range(0f,1f)] public float tremoloDuration4;  // Float that determines ratio
-    [Range(0f,1f)] private float tremoloNoteDuration4 = .1f;       
-    [Range(0f,1f)] public float tremoloNote4;
-    [Range(0f,1f)] private float tremoloNoteVelocity4 = .75f;
-    public bool playTremolo4;
-    private float _tremoloTimer4;
+    
+    [Header("Beat 4 (follows 1 by ratio)")]
+    [Range(0f,1f)] public float beatTiming4;  // Float that determines ratio
+    [Range(0f,1f)] public float beatNoteDuration4 = .1f;       
+    [Range(0f,1f)] public float beatNote4;
+    [Range(0f,1f)] public float beatNoteVelocity4 = .75f;
+    public bool playBeat4;
+    private float _beatTimer4;
     private bool _t4Ready;
     
     [Header("Pitch Bend")]
@@ -107,65 +112,65 @@ public class MidiDemo3 : MonoBehaviour
 
 
 
-        float periodA = Mathf.Max(1e-4f, TremoloPeriod1(tremoloDuration));
-        float periodB = Mathf.Max(1e-4f, periodA * SelectRatio(tremoloDuration2));
-        float periodC = Mathf.Max(1e-4f, periodA * SelectRatio(tremoloDuration3));
-        float periodD = Mathf.Max(1e-4f, periodA * SelectRatio(tremoloDuration4));
+        float periodA = Mathf.Max(1e-4f, TremoloPeriod1(beatTiming1));
+        float periodB = Mathf.Max(1e-4f, periodA * SelectRatio(beatTiming2));
+        float periodC = Mathf.Max(1e-4f, periodB * SelectRatio(beatTiming3));
+        float periodD = Mathf.Max(1e-4f, periodC * SelectRatio(beatTiming4));
 
         // reset/prime on toggle
         
-        if (!playTremolo)
+        if (!playBeat1)
         {
-            _tremoloTimer = 0f;
+            _beatTimer = 0f;
             _t2Ready = _t3Ready = _t4Ready = false;
         }
         else if (!_wasPlayTremolo)
         {
-            _tremoloTimer = 0f;
+            _beatTimer = 0f;
             _t2Ready = _t3Ready = _t4Ready = true;
         }
         
 
-        //_tremoloTimer += Time.deltaTime;
+        //_beatTimer += Time.deltaTime;
         
         // --- Trem 1 ---
-        if (playTremolo)
+        if (playBeat1)
         {
-            //if (_tremoloTimer <= 0f)
+            //if (_beatTimer <= 0f)
                 
 
-            if (_tremoloTimer >= periodA)
+            if (_beatTimer >= periodA)
             {
-                sender.PlayFixedNote01(tremoloNote, tremoloNoteVelocity, tremoloNoteDuration);
-                _tremoloTimer = 0f;
+                sender.PlayFixedNote01(beatNote, beatNoteVelocity, beatNoteDuration);
+                _beatTimer = 0f;
                 _t2Ready = _t3Ready = _t4Ready = true;
             }
 
-            _tremoloTimer += Time.deltaTime;
+            _beatTimer += Time.deltaTime;
         }
 
         // --- Trem 2 (derived) ---
-        if (playTremolo2 && _t2Ready && _tremoloTimer >= periodB)
+        if (playBeat2 && _t2Ready && _beatTimer >= periodB)
         {
             _t2Ready = false;
-            sender.PlayFixedNote01(tremoloNote2, tremoloNoteVelocity2, tremoloNoteDuration2);
+            sender.PlayFixedNote01(beatNote2, beatNoteVelocity2, beatNoteDuration2);
         }
 
         // --- Trem 3 (derived) ---
-        if (playTremolo3 && _t3Ready && _tremoloTimer >= periodC)
+        if (playBeat3 && _t3Ready && _beatTimer >= periodC)
         {
             _t3Ready = false;
-            sender.PlayFixedNote01(tremoloNote3, tremoloNoteVelocity3, tremoloNoteDuration3);
+            sender.PlayFixedNote01(beatNote3, beatNoteVelocity3, beatNoteDuration3);
         }
 
         // --- Trem 4 (derived) ---
-        if (playTremolo4 && _t4Ready && _tremoloTimer >= periodD)
+        if (playBeat4 && _t4Ready && _beatTimer >= periodD)
         {
             _t4Ready = false;
-            sender.PlayFixedNote01(tremoloNote4, tremoloNoteVelocity4, tremoloNoteDuration4);
+            sender.PlayFixedNote01(beatNote4, beatNoteVelocity4, beatNoteDuration4);
         }
 
-        _wasPlayTremolo = playTremolo;
+        _wasPlayTremolo = playBeat1;
         
         
     }

@@ -25,8 +25,8 @@ MonoBehaviour:
   F: 0
   Gb: 1
   G: 0
-  octaveMin: 2
-  octaveMax: 5
+  octaveMin: 1
+  octaveMax: 7
   velocity: 85
   sustain: 0.2
   fifths: 0

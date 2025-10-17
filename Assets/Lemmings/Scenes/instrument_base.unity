@@ -254,7 +254,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1906461163}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a00158a3db533274692ebf23ec348fa7, type: 3}
   m_Name: 
@@ -266,18 +266,26 @@ MonoBehaviour:
   playDuration: 0
   playOn: 0
   playOff: 0
-  tremoloDuration: 0
-  tremoloNote: 0
-  playTremolo: 0
-  tremoloDuration2: 0
-  tremoloNote2: 0
-  playTremolo2: 0
-  tremoloDuration3: 0
-  tremoloNote3: 0
-  playTremolo3: 0
-  tremoloDuration4: 0
-  tremoloNote4: 0
-  playTremolo4: 0
+  beatTiming1: 0
+  beatNoteDuration: 0.1
+  beatNote: 0
+  beatNoteVelocity: 0.75
+  playBeat1: 0
+  beatTiming2: 0
+  beatNoteDuration2: 0.1
+  beatNote2: 0
+  beatNoteVelocity2: 0.75
+  playBeat2: 0
+  beatTiming3: 0
+  beatNoteDuration3: 0.1
+  beatNote3: 0
+  beatNoteVelocity3: 0.75
+  playBeat3: 0
+  beatTiming4: 0
+  beatNoteDuration4: 0.1
+  beatNote4: 0
+  beatNoteVelocity4: 0.75
+  playBeat4: 0
   pitchBend: 0
   setPitchBend: 0
   modWheel: 0
@@ -295,27 +303,27 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1906461163}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 92439e3e7cd256947951b385dd8889b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sender: {fileID: 1906461165}
-  Period: 1
+  Period: 0.633
   NoteSustain: 0.1
   NoteVelocity: 0.75
-  tremoloDuration1: 0
-  tremoloNote1: 0
-  playTremolo1: 0
-  tremoloDuration2: 0.25
-  tremoloNote2: 0.401
-  playTremolo2: 1
-  tremoloDuration3: 0.5
-  tremoloNote3: 0.626
-  playTremolo3: 1
-  tremoloDuration4: 0.75
-  tremoloNote4: 0.761
-  playTremolo4: 1
+  beatTiming1: 0.5
+  beatNote1: 0.31
+  playBeat1: 1
+  beatTiming2: 0.5
+  beatNote2: 0.599
+  playBeat2: 1
+  beatTiming3: 0.5
+  beatNote3: 0.736
+  playBeat3: 1
+  beatTiming4: 0
+  beatNote4: 1
+  playBeat4: 1
   pitchBend: 0
   setPitchBend: 0
   modWheel: 0
